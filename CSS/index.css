@@ -196,7 +196,7 @@ nav a:hover {
   position: relative;
   width: 100%;
   max-width: 100%;
-  min-height: 600px;
+  /* min-height: 600px; */
   overflow: hidden;
 }
 
@@ -216,9 +216,13 @@ nav a:hover {
 }
 
 .slider-slide img {
-  width: 100%;
-  height: 100vh; /* Ajusta a altura total da tela */
-  object-fit: cover; /* Mantém o tamanho correto sem cortes estranhos */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  width: 70%;
+  height: 60vh; /* Ajusta a altura total da tela */
+  object-fit: fill; /* Mantém o tamanho correto sem cortes estranhos */
 }
 
 /* Ajuste para manter o conteúdo fixo no slide */
@@ -350,3 +354,45 @@ nav a:hover {
   }
 }
 
+.agenda {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+#calendario-container {
+  margin-top: 20px;
+}
+#calendario {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  max-width: 500px;
+  margin: auto;
+}
+.dia {
+  padding: 10px;
+  background: lightgray;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+}
+.close {
+  float: right;
+  cursor: pointer;
+}

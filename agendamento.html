@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento</title>
+    <link rel="stylesheet" href="CSS/agendamento.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <h1>Calendário de Agendamentos - 2025</h1>
+    <div id="mes-navegacao">
+        <button onclick="mudarMes(-1)">&#9665; Anterior</button>
+        <span id="mes-atual"></span>
+        <button onclick="mudarMes(1)">Próximo &#9655;</button>
+    </div>
+    <div id="calendario-container">
+        <div id="calendario"></div>
+    </div>
+
+    <div id="modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h3>Agendar para <span id="diaSelecionado"></span></h3>
+            <label>Nome Completo:</label>
+            <input type="text" id="nome" placeholder="Digite seu nome">
+            <label>WhatsApp:</label>
+            <input type="text" id="whatsapp" placeholder="Digite seu número">
+            <label>Horários Disponíveis:</label>
+            <select id="horarios"></select>
+            <button onclick="salvarAgendamento()">Confirmar</button>
+        </div>
+    </div>
+
+    <script>
+        const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+        let mesAtual = 0; // Janeiro de 2025
+        const anoAtual = 2025;
+
+        // Obter a data atual
+        const hoje = new Date();
+        const diaAtual = hoje.getDate();
+        const mesAtualData = hoje.getMonth();
+        const anoAtualData = hoje.getFullYear();
+
+        // Função para gerar o calendário
+        function gerarCalendario() {
+            const calendario = document.getElementById('calendario');
+            const mesNome = document.getElementById('mes-atual');
+            mesNome.innerText = `${meses[mesAtual]} de ${anoAtual}`;
+            calendario.innerHTML = '';
+
+            // Calcular o primeiro dia do mês e o número de dias
+            const primeiroDia = new Date(anoAtual, mesAtual, 1);
+            const ultimoDia = new Date(anoAtual, mesAtual + 1, 0);
+            const diasNoMes = ultimoDia.getDate();
+            const diaDaSemana = primeiroDia.getDay(); // Dia da semana em que o mês começa (0 = domingo)
+
+            // Preencher os dias da semana
+            const diasDaSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+            for (let diaSemana of diasDaSemana) {
+                let divDiaSemana = document.createElement('div');
+                divDiaSemana.classList.add('dia');
+                divDiaSemana.innerText = diaSemana;
+                calendario.appendChild(divDiaSemana);
+            }
+
+            // Preencher os dias do mês com o alinhamento correto
+            for (let i = 0; i < diaDaSemana; i++) {
+                let divDiaVazio = document.createElement('div');
+                divDiaVazio.classList.add('dia');
+                calendario.appendChild(divDiaVazio);
+            }
+
+            let diaMarcado = -1; // Variável para marcar o dia atual
+            for (let i = 1; i <= diasNoMes; i++) {
+                let divDia = document.createElement('div');
+                divDia.classList.add('dia');
+                const dataAtual = new Date(anoAtual, mesAtual, i);
+
+                // Verificar se é domingo e bloquear o clique
+                if (dataAtual.getDay() === 0) {
+                    divDia.classList.add('domingo');
+                }
+
+                divDia.innerText = i;
+                divDia.onclick = function() { abrirModal(i); };
+
+                // Marcar o dia atual com uma cor diferente
+                if (i === diaAtual && mesAtual === mesAtualData && anoAtual === anoAtualData) {
+                    divDia.classList.add('ativo');
+                    diaMarcado = i;
+                }
+
+                calendario.appendChild(divDia);
+            }
+
+            // Rolar para o dia marcado
+            if (diaMarcado !== -1) {
+                const diaMarcadoElemento = document.querySelector(`#calendario .dia:nth-child(${diaMarcado + diaDaSemana})`);
+                diaMarcadoElemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        function mudarMes(direcao) {
+            mesAtual += direcao;
+            if (mesAtual > 11) mesAtual = 0; // Se passar de Dezembro, volta para Janeiro
+            if (mesAtual < 0) mesAtual = 11; // Se passar de Janeiro, vai para Dezembro
+            gerarCalendario();
+        }
+
+        function abrirModal(dia) {
+            document.getElementById('modal').style.display = 'flex';
+            document.getElementById('diaSelecionado').innerText = dia;
+            carregarHorarios();
+        }
+
+        function fecharModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function carregarHorarios() {
+            const horarios = document.getElementById('horarios');
+            horarios.innerHTML = '';
+            fetch('horarios.json') // Substitua essa URL pela sua API de horários
+                .then(response => response.json())
+                .then(data => {
+                    data.horarios.forEach(horario => {
+                        let option = document.createElement('option');
+                        option.value = horario;
+                        option.innerText = horario;
+                        horarios.appendChild(option);
+                    });
+                });
+        }
+
+        function salvarAgendamento() {
+            const nome = document.getElementById('nome').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            const horario = document.getElementById('horarios').value;
+            alert(`Agendado para ${nome}, ${whatsapp}, horário: ${horario}`);
+            fecharModal();
+        }
+
+        // Inicializar o calendário ao carregar a página
+        window.onload = function() {
+            gerarCalendario();
+        };
+    </script>
+</body>
+</html>

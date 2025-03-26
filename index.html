@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fisio Emi</title>
     <script src="https://kit.fontawesome.com/43b36f20b7.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/YOUR_KIT_CODE.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/CSS/index.css">
 </head>
 <body>
@@ -21,9 +22,11 @@
           <div></div>
           <div></div>
         </div>
-        <button class="agenda"><i class="fa-regular fa-calendar-days"></i> AGENDE AGORA</button>
+        <button class="agenda" onclick="window.location.href='agendamento.html'">
+            <i class="fa-regular fa-calendar-days"></i> AGENDE AGORA
+        </button>
     </header>
-    
+
     <div class="menu-overlay"></div>
 
     <div class="menu">
@@ -33,93 +36,6 @@
       <a href="#">Serviços</a>
       <a href="#">Contato</a>
     </div>
-    
-    <div class="slider">
-        <div class="slider-wrapper">
-            <div class="slider-slide">
-                <img src="ai-generated-8930731_1920 (1).jpg" alt="Slide 1">
-                <div class="content">
-                    <p class="titulo">Liberação Miofascial</p><br>
-                    <p class="subtitulo">Uma técnica terapêutica eficaz para aliviar tensões musculares e melhorar <br>a flexibilidade, proporcionando mais conforto e liberdade ao seu corpo.</p>
-                </div>
-            </div>
-            <div class="slider-slide">
-                <img src="injury-8668706_1920.jpg" alt="Slide 2">
-                <div class="content">
-                    <p class="titulo">Liberação Miofascial</p><br>
-                    <p class="subtitulo">Uma técnica terapêutica eficaz para aliviar tensões musculares e melhorar <br>a flexibilidade, proporcionando mais conforto e liberdade ao seu corpo.</p>
-                </div>
-            </div>
-            <div class="slider-slide">
-                <img src="physiotherapy-5624916_1920.jpg" alt="Slide 3">
-                <div class="content">
-                    <p class="titulo">Liberação Miofascial</p><br>
-                    <p class="subtitulo">Uma técnica terapêutica eficaz para aliviar tensões musculares e melhorar <br>a flexibilidade, proporcionando mais conforto e liberdade ao seu corpo.</p>
-                </div>
-            </div>
-        </div>
-        <div class="slider-indicators">
-            <div class="indicator active"></div>
-            <div class="indicator"></div>
-            <div class="indicator"></div>
-        </div>
-    </div>
-    
-    <a href="https://wa.me/55012981794612" target="_blank" class="whatsapp-button" title="Fale conosco no WhatsApp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-        <div class="whatsapp-tooltip">Fale conosco</div>
-    </a>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-    const slides = document.querySelectorAll(".slider-slide");
-    const indicators = document.querySelectorAll(".slider-indicators div");
-    let currentIndex = 0;
-    let slideInterval;
-
-    function updateIndicators() {
-        indicators.forEach((indicator, index) => {
-            indicator.classList.toggle("active", index === currentIndex);
-        });
-    }
-
-    function goToSlide(index) {
-        currentIndex = index;
-        document.querySelector(".slider-wrapper").style.transform = `translateX(-${currentIndex * 100}%)`;
-
-        slides.forEach((slide, idx) => {
-            slide.classList.toggle("active", idx === currentIndex);
-        });
-
-        updateIndicators();
-    }
-
-    function goToNextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
-        goToSlide(currentIndex);
-    }
-
-    function startAutoSlide() {
-        slideInterval = setInterval(goToNextSlide, 6000);
-    }
-
-    function stopAutoSlide() {
-        clearInterval(slideInterval);
-    }
-
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener("click", () => {
-            stopAutoSlide();
-            goToSlide(index);
-            startAutoSlide();
-        });
-    });
-
-    goToSlide(currentIndex);
-    startAutoSlide();
-});
-
-        </script>
 
     <script src="JS/script.js"></script>
 </body>
