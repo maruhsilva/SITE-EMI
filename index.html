@@ -11,10 +11,10 @@
     <header>
         <div class="logo"><img src="E.png" alt="logo"></div>
         <nav>
-          <a href="#">Início</a>
-          <a href="#">Sobre</a>
-          <a href="#">Serviços</a>
-          <a href="#">Contato</a>
+          <a href="#inicio">Início</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#footer">Contato</a>
         </nav>
         <div class="hamburger">
           <div></div>
@@ -26,20 +26,153 @@
         </button>
     </header>
     
-    <div class="menu-overlay"></div>
+    <section id="inicio" class="hero">
+      <video autoplay loop muted playsinline class="hero-video">
+          <source src="0402(1).mp4" type="video/mp4">
+          Seu navegador não suporta vídeos em HTML5.
+      </video>
+  
+      <div class="hero-overlay"></div> <!-- Camada de fundo escurecido -->
+  
+      <div class="hero-content">
+          <h1>Fisioterapia Especializada para sua Qualidade de Vida</h1>
+          <p>Reabilitação personalizada com foco em bem-estar e alívio da dor.</p>
+  
+          <div class="hero-buttons">
+              <button onclick="window.location.href='agendamento.html'">Agende sua consulta</button>
+              <button class="secondary" onclick="window.location.href='#sobre'">Saiba mais</button>
+          </div>
+      </div>
+  </section>
+  
 
-    <div class="menu">
-      <button class="close-btn">&times;</button>
-      <a href="#">Home</a>
-      <a href="#">Sobre</a>
-      <a href="#">Serviços</a>
-      <a href="#">Contato</a>
-    </div>
-    
+    <!-- SOBRE MIM -->
+<section id="sobre" class="sobre">
+  <h2>Sobre Mim</h2>
+  <div class="sobre-container">
+      <div class="sobre-img">
+          <img src="20240706_132216.jpg" alt="Fisioterapeuta">
+      </div>
+      <div class="sobre-content">
+          <p>Olá, sou <strong>Êmili Mendes</strong>, fisioterapeuta especializada em reabilitação e bem-estar. Com 7 anos de experiência, meu objetivo é proporcionar tratamentos personalizados para ajudar meus pacientes a recuperarem sua qualidade de vida.</p>
+
+          <div class="sobre-info">
+              <div class="info-item">
+                  <i class="fa-solid fa-user-md"></i>
+                  <p><strong>Formação:</strong> Graduada em Fisioterapia pela Universidade Paulista em São José dos Campos.</p>
+              </div>
+              <div class="info-item">
+                  <i class="fa-solid fa-medal"></i>
+                  <p><strong>Especializações:</strong> Fisioterapia Neuro e cursando especialização em coluna vertebral pela FCMSCSP</p>
+              </div>
+              <div class="info-item">
+                  <i class="fa-solid fa-heart-pulse"></i>
+                  <p><strong>Abordagem:</strong> Atendimento humanizado e técnicas baseadas em evidências científicas.</p>
+              </div>
+          </div>
+
+          <a href="contato.html" class="botao">Entre em contato</a>
+      </div>
+  </div>
+</section>
+
+  
+  
+
+    <section id="servicos" class="servicos">
+      <h2>Serviços Oferecidos</h2>
+      <div class="servico-container">
+          <div class="servico">
+              <i class="fa-solid fa-spa"></i>
+              <h3>Reabilitação Física</h3>
+              <p>Tratamentos personalizados para recuperar movimentos e fortalecer o corpo.</p>
+          </div>
+          <div class="servico">
+              <i class="fa-solid fa-heartbeat"></i>
+              <h3>Fisioterapia Esportiva</h3>
+              <p>Prevenção e recuperação de lesões para atletas e esportistas.</p>
+          </div>
+          <div class="servico">
+              <i class="fa-solid fa-user-md"></i>
+              <h3>Tratamento de Dor</h3>
+              <p>Redução de dores musculares e articulares com técnicas especializadas.</p>
+          </div>
+          <div class="servico">
+              <i class="fa-solid fa-hand-holding-medical"></i>
+              <h3>Pós-Cirúrgico</h3>
+              <p>Acelere sua recuperação com fisioterapia pós-operatória eficaz.</p>
+          </div>
+      </div>
+  </section>
+  
+
     <a href="https://wa.me/55012981794612" target="_blank" class="whatsapp-button" title="Fale conosco no WhatsApp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-        <div class="whatsapp-tooltip">Fale conosco</div>
-    </a>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+      <div class="whatsapp-tooltip">Fale conosco</div>
+  </a>
+
+  <footer>
+    <div class="footer-container" id="footer">
+        <div class="footer-logo">
+          <div class="logo"><img src="E.png" alt="logo"></div>
+            <p>Cuidando da sua saúde e bem-estar com dedicação.</p>
+        </div>
+
+        <div class="footer-links">
+            <h3>Navegação</h3>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="agendamento.html">Agendamento</a></li>
+                <li><a href="#footer">Contato</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-contact">
+            <h3>Contato</h3>
+            <p><i class="fa-solid fa-phone"></i> (12) 98179-4612</p>
+            <p><i class="fa-solid fa-envelope"></i> contato@fisioemili.com</p>
+            <p><i class="fa-solid fa-location-dot"></i>São José dos Campos - SP</p>
+        </div>
+
+        <div class="footer-social">
+            <h3>Redes Sociais</h3>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/emilimendes/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://wa.me/55012981794612" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 Fisio Emi - Todos os direitos reservados. Desenvolvido por <a href="https://mswebwork.com.br" target="_blank" rel="noopener noreferrer" style="color: aliceblue;">MS WebWork</a></p>
+    </div>
+</footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const whatsappButton = document.querySelector(".whatsapp-button");
+        const footer = document.querySelector("footer");
+      
+        function checkPosition() {
+            const footerRect = footer.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            if (footerRect.top <= windowHeight) {
+                whatsappButton.classList.add("fixed");
+                whatsappButton.style.bottom = `${windowHeight - footerRect.top + 20}px`;
+            } else {
+                whatsappButton.classList.remove("fixed");
+                whatsappButton.style.bottom = "20px";
+            }
+        }
+      
+        window.addEventListener("scroll", checkPosition);
+        checkPosition(); // Executa a verificação ao carregar
+      });
+    </script>
 
     <script src="JS/script.js"></script>
 </body>
