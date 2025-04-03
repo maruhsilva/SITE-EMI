@@ -866,3 +866,103 @@ footer {
   }
 }
 
+@media (max-width: 1024px) {
+  header {
+      flex-wrap: wrap;
+      gap: 5%;
+      padding: 20px;
+  }
+
+  .logo img {
+      width: 180px;
+  }
+
+  .agenda {
+      font-size: 0.9rem;
+      padding: 0.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+      display: none;
+  }
+
+  .hamburger {
+      display: flex;
+  }
+
+  .menu {
+      width: 100%;
+  }
+
+  .menu a {
+      font-size: 18px;
+  }
+
+  #calendario {
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+  }
+
+  .dia {
+      padding: 12px;
+      font-size: 16px;
+  }
+
+  .modal-content {
+      width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+      padding: 15px;
+      justify-content: space-around;
+  }
+
+  .logo img {
+      width: 150px;
+  }
+
+  .agenda {
+      font-size: 0.8rem;
+      padding: 0.5rem;
+  }
+
+  #mes-navegacao {
+      flex-direction: row;
+      gap: 10px;
+  }
+
+  #mes-navegacao button {
+      padding: 8px;
+      font-size: 14px;
+  }
+
+  #calendario {
+      gap: 4px;
+  }
+
+  .dia {
+      padding: 10px;
+      font-size: 14px;
+  }
+
+  .modal-content {
+      width: 95%;
+  }
+
+  .whatsapp-button {
+      width: 50px;
+      height: 50px;
+      bottom: 15px;
+      right: 15px;
+  }
+
+  .whatsapp-button img {
+      width: 30px;
+      height: 30px;
+  }
+}
+

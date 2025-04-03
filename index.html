@@ -6,6 +6,7 @@
     <title>Fisio Emi</title>
     <script src="https://kit.fontawesome.com/43b36f20b7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="CSS/index.css">
+    <script defer src="JS/script.js"></script>
 </head>
 <body>
     <header>
@@ -25,6 +26,16 @@
             <i class="fa-regular fa-calendar-days"></i> AGENDE AGORA
         </button>
     </header>
+
+    <div class="menu-overlay"></div>
+
+    <div class="menu">
+      <button class="close-btn">&times;</button>
+      <a href="index.html">Home</a>
+      <a href="index.html#sobre">Sobre</a>
+      <a href="index.html#servicos">Serviços</a>
+      <a href="index.html#footer">Contato</a>
+    </div>
     
     <section id="inicio" class="hero">
       <video autoplay loop muted playsinline class="hero-video">
@@ -126,6 +137,7 @@
                 <li><a href="#servicos">Serviços</a></li>
                 <li><a href="agendamento.html">Agendamento</a></li>
                 <li><a href="#footer">Contato</a></li>
+                <li><a href="login.php">Área do ADM</a></li>
             </ul>
         </div>
 
@@ -173,7 +185,5 @@
         checkPosition(); // Executa a verificação ao carregar
       });
     </script>
-
-    <script src="JS/script.js"></script>
 </body>
 </html>

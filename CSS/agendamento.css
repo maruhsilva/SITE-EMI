@@ -440,7 +440,7 @@ input, select {
 @media (max-width: 480px) {
   header {
       padding: 15px;
-      gap: 3%;
+      justify-content: space-between;
   }
 
   .logo img {
