@@ -36,85 +36,68 @@
       <a href="index.html#servicos">Serviços</a>
       <a href="index.html#footer">Contato</a>
     </div>
-    
-    <section id="inicio" class="hero">
-      <video autoplay loop muted playsinline class="hero-video">
-          <source src="0402(1).mp4" type="video/mp4">
-          Seu navegador não suporta vídeos em HTML5.
-      </video>
-  
-      <div class="hero-overlay"></div> <!-- Camada de fundo escurecido -->
-  
-      <div class="hero-content">
-          <h1>Fisioterapia Especializada para sua Qualidade de Vida</h1>
-          <p>Reabilitação personalizada com foco em bem-estar e alívio da dor.</p>
-  
-          <div class="hero-buttons">
-              <button onclick="window.location.href='agendamento.html'">Agende sua consulta</button>
-              <button class="secondary" onclick="window.location.href='orcamentos.html'">Orçamentos</button>
-          </div>
+
+        <div id="formulario-fisio" style="max-width: 500px; margin: 2rem auto; background-color: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); font-family: 'Lucida Sans', 'Lucida Sans Regular', sans-serif;">
+  <h2 style="color: #2e3a59; text-align: center; margin-bottom: 25px; font-weight: bold;">Orçamento</h2>
+
+  <form action="#" method="post" style="display: flex; flex-direction: column; gap: 20px;">
+
+    <div>
+      <label for="nome" style="font-size: 14px; font-weight: bold; color: #444;">Nome Completo</label>
+      <input type="text" id="nome" name="nome" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px;">
+    </div>
+
+    <div>
+      <label for="idade" style="font-size: 14px; font-weight: bold; color: #444;">Idade</label>
+      <input type="number" id="idade" name="idade" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px;">
+    </div>
+
+    <div>
+      <label for="whatsapp" style="font-size: 14px; font-weight: bold; color: #444;">WhatsApp</label>
+      <input type="tel" id="whatsapp" name="whatsapp" placeholder="(XX) XXXXX-XXXX" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px;">
+    </div>
+
+    <div>
+      <label for="email" style="font-size: 14px; font-weight: bold; color: #444;">Email</label>
+      <input type="email" id="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px;">
+    </div>
+
+    <div>
+      <label style="font-size: 14px; font-weight: bold; color: #444;">Tipo de Consulta</label>
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px; padding-left: 10px;">
+        <label style="display: flex; align-items: center; gap: 10px;">
+          <input type="radio" name="tipo" value="consultorio" required>
+          Presencial em consultório
+        </label>
+        <label style="display: flex; align-items: center; gap: 10px;">
+          <input type="radio" name="tipo" value="domiciliar">
+          Domiciliar
+        </label>
+        <label style="display: flex; align-items: center; gap: 10px;">
+          <input type="radio" name="tipo" value="online">
+          Online
+        </label>
       </div>
-  </section>
-  
+    </div>
 
-    <!-- SOBRE MIM -->
-<section id="sobre" class="sobre">
-  <h2>Sobre Mim</h2>
-  <div class="sobre-container">
-      <div class="sobre-img">
-          <img src="20240706_132216.jpg" alt="Fisioterapeuta">
-      </div>
-      <div class="sobre-content">
-          <p>Olá, sou <strong>Êmili Mendes</strong>, fisioterapeuta especializada em reabilitação e bem-estar. Com 7 anos de experiência, meu objetivo é proporcionar tratamentos personalizados para ajudar meus pacientes a recuperarem sua qualidade de vida.</p>
+    <div>
+      <label for="sessoes" style="font-size: 14px; font-weight: bold; color: #444;">Quantidade de Sessões</label>
+      <select id="sessoes" name="sessoes" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px;">
+        <option value="">Selecione...</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+      </select>
+    </div>
 
-          <div class="sobre-info">
-              <div class="info-item">
-                  <i class="fa-solid fa-user-md"></i>
-                  <p><strong>Formação:</strong> Graduada em Fisioterapia pela Universidade Paulista em São José dos Campos.</p>
-              </div>
-              <div class="info-item">
-                  <i class="fa-solid fa-medal"></i>
-                  <p><strong>Especializações:</strong> Fisioterapia Neuro e cursando especialização em coluna vertebral pela FCMSCSP</p>
-              </div>
-              <div class="info-item">
-                  <i class="fa-solid fa-heart-pulse"></i>
-                  <p><strong>Abordagem:</strong> Atendimento humanizado e técnicas baseadas em evidências científicas.</p>
-              </div>
-          </div>
+    <button type="submit" style="background-color: #cba788; color: white; border: none; padding: 12px; font-size: 16px; font-weight: bold; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">
+      Enviar
+    </button>
 
-          <a href="contato.html" class="botao">Entre em contato</a>
-      </div>
-  </div>
-</section>
+  </form>
+</div>
 
-  
-  
 
-    <section id="servicos" class="servicos">
-      <h2>Serviços Oferecidos</h2>
-      <div class="servico-container">
-          <div class="servico">
-              <i class="fa-solid fa-spa"></i>
-              <h3>Reabilitação Física</h3>
-              <p>Tratamentos personalizados para recuperar movimentos e fortalecer o corpo.</p>
-          </div>
-          <div class="servico">
-              <i class="fa-solid fa-heartbeat"></i>
-              <h3>Fisioterapia Esportiva</h3>
-              <p>Prevenção e recuperação de lesões para atletas e esportistas.</p>
-          </div>
-          <div class="servico">
-              <i class="fa-solid fa-user-md"></i>
-              <h3>Tratamento de Dor</h3>
-              <p>Redução de dores musculares e articulares com técnicas especializadas.</p>
-          </div>
-          <div class="servico">
-              <i class="fa-solid fa-hand-holding-medical"></i>
-              <h3>Pós-Cirúrgico</h3>
-              <p>Acelere sua recuperação com fisioterapia pós-operatória eficaz.</p>
-          </div>
-      </div>
-  </section>
   
 
     <a href="https://wa.me/55012981794612" target="_blank" class="whatsapp-button" title="Fale conosco no WhatsApp">
