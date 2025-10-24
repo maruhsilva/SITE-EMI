@@ -17,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $horarios[] = $row;
     }
 
+    
+
     echo json_encode(["horarios" => $horarios]);
 }
 

@@ -1,0 +1,324 @@
+/* Estilos para contato.html (Adicionar ao index.css ou criar contato.css) */
+
+.contato-container {
+    max-width: 1100px;
+    margin: 3rem auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', sans-serif;
+}
+
+.contato-container h2 {
+    text-align: center;
+    color: #cba788;
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+}
+
+.contato-subtitulo {
+    text-align: center;
+    color: #555;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+    max-width: 600px; /* Limita largura do subtítulo */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contato-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+    gap: 40px; /* Espaço entre as colunas */
+}
+
+.contato-info {
+    flex: 1; /* Ocupa metade do espaço */
+    min-width: 300px; /* Largura mínima antes de quebrar */
+}
+
+.contato-info h3,
+.contato-form h3 {
+    color: #a87b60; /* Marrom mais escuro */
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.contato-info .info-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.contato-info .info-item i {
+    font-size: 1.4rem;
+    color: #cba788;
+    width: 25px; /* Alinha os ícones */
+    text-align: center;
+}
+
+.contato-info .info-item a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contato-info .info-item a:hover {
+    color: #cba788;
+    text-decoration: underline;
+}
+
+.map-container {
+    margin-top: 30px;
+}
+
+.map-container iframe {
+    border-radius: 8px;
+    filter: grayscale(30%); /* Efeito sutil no mapa */
+    transition: filter 0.3s;
+}
+.map-container iframe:hover {
+     filter: grayscale(0%);
+}
+
+.contato-form {
+    flex: 1.5; /* Ocupa um pouco mais de espaço */
+    min-width: 300px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: inherit; /* Garante a mesma fonte */
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #cba788;
+    box-shadow: 0 0 5px rgba(203, 167, 136, 0.5);
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical; /* Permite redimensionar apenas verticalmente */
+    min-height: 120px;
+}
+
+.botao-enviar {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    background-color: #a87b60; /* Cor primária */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: bold;
+}
+
+.botao-enviar:hover {
+    background-color: #8a6a50; /* Mais escuro */
+    transform: translateY(-2px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .contato-wrapper {
+        flex-direction: column; /* Empilha as colunas */
+    }
+    .contato-container h2 {
+        font-size: 2rem;
+    }
+    .contato-subtitulo {
+        font-size: 1rem;
+    }
+}
+
+#main-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    padding: 20px 40px; 
+    z-index: 100; 
+    background-color: transparent; /* Padrão transparente para a home */
+    transition: background-color 0.4s ease-out, box-shadow 0.4s ease-out; 
+    gap: 10%; 
+}
+
+/* --- Estilos do Header QUANDO ROLADO (.scrolled) OU SÓLIDO (.header-solid) --- */
+/* Aplicar estilos a AMBAS as classes */
+#main-header.scrolled,
+#main-header.header-solid {
+    background-color: #ffffff; /* Fundo branco sólido */
+    /* background-color: #FDFBF8; */ /* Ou bege claro */
+    /* background-color: #cba788; */ /* Ou a cor original */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+}
+
+/* --- Logo --- */
+#main-header .logo img {
+    width: 180px; 
+    transition: filter 0.4s ease-out;
+}
+
+/* Logo no estado inicial (transparente - :not(.scrolled):not(.header-solid)) */
+/* Só aplica filtro se NÃO tiver .scrolled E NÃO tiver .header-solid */
+/* #main-header:not(.scrolled):not(.header-solid) .logo img { */
+     /* filter: brightness(0) invert(1); /* Deixa a imagem branca (se necessário) */
+     /* Se o logo original já for claro, remova ou comente */
+/* } */
+
+/* Logo no estado rolado OU sólido */
+#main-header.scrolled .logo img,
+#main-header.header-solid .logo img {
+    filter: none; 
+}
+
+
+/* --- Navegação --- */
+#main-header nav {
+    display: flex; 
+    gap: 25px; 
+}
+
+#main-header nav a {
+    text-decoration: none;
+    font-family: 'Poppins', 'Lucida Sans', sans-serif; 
+    font-weight: 500; 
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative; 
+    padding-bottom: 5px; 
+    transition: color 0.4s ease-out;
+    /* Cor inicial (transparente) */
+    color: #ffffff; 
+}
+/* Cor dos links quando rolado OU sólido */
+#main-header.scrolled nav a,
+#main-header.header-solid nav a {
+    color: #333333; /* Cor escura para fundo claro */
+    /* color: #ffffff; */ /* Se o fundo rolado/sólido for escuro */
+}
+
+/* Efeito de sublinhado */
+#main-header nav a::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px; transition: width 0.3s ease-out;
+    /* Cor inicial */
+    background-color: #ffffff; 
+}
+/* Cor do sublinhado quando rolado OU sólido */
+#main-header.scrolled nav a::after,
+#main-header.header-solid nav a::after {
+     background-color: #cba788; 
+}
+#main-header nav a:hover::after { width: 100%; }
+
+/* Cor do link no hover */
+#main-header:not(.scrolled):not(.header-solid) nav a:hover {
+     color: #ffffff; /* Mantém branco no hover transparente */
+}
+#main-header.scrolled nav a:hover,
+#main-header.header-solid nav a:hover {
+     color: #a87b60; /* Cor de destaque no hover sólido/rolado */
+}
+
+/* --- Botão CTA --- */
+#main-header .agenda {
+    padding: 10px 20px; border: none; border-radius: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.4s ease-out, color 0.4s ease-out, box-shadow 0.3s;
+    display: flex; align-items: center; gap: 8px;
+    font-weight: bold; cursor: pointer;
+    /* Estilo inicial (transparente) */
+    background-color: rgba(255, 255, 255, 0.9); 
+    color: #a87b60; 
+}
+/* Estilo do botão quando rolado OU sólido */
+#main-header.scrolled .agenda,
+#main-header.header-solid .agenda {
+    background-color: #cba788; 
+    color: #ffffff; 
+}
+#main-header .agenda i { transition: color 0.4s ease-out; }
+/* Cor do ícone quando rolado OU sólido */
+#main-header.scrolled .agenda i,
+#main-header.header-solid .agenda i { color: #ffffff; }
+#main-header .agenda:hover { box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); transform: translateY(-2px); }
+
+/* --- Ícone Hamburger --- */
+#main-header .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; z-index: 1001; }
+#main-header .hamburger div { width: 25px; height: 3px; transition: background-color 0.4s ease-out, transform 0.3s ease, opacity 0.3s ease;
+    /* Cor inicial (transparente) */
+    background-color: #ffffff; 
+}
+/* Cor do hamburger quando rolado OU sólido */
+#main-header.scrolled .hamburger div,
+#main-header.header-solid .hamburger div {
+     background-color: #333333; /* Cor escura */
+     /* background-color: #ffffff; */ /* Se fundo for escuro */
+}
+
+/* Animação Hamburger -> X (sem alterações, mas garante que a cor do X funcione) */
+#main-header .hamburger.active div { background-color: #ffffff !important; /* Força branco no X */ }
+#main-header .hamburger.active div:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+#main-header .hamburger.active div:nth-child(2) { opacity: 0; }
+#main-header .hamburger.active div:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* --- Ajustes Responsivos --- */
+@media (max-width: 900px) { /* Ponto onde a navegação pode começar a quebrar */
+    #main-header nav {
+        display: none; /* Esconde navegação inline */
+    }
+    #main-header .hamburger {
+        display: flex; /* Mostra o hamburger */
+    }
+     #main-header {
+         justify-content: space-between; /* Afasta logo e hamburger/botão */
+         gap: 0; /* Remove gap central */
+     }
+}
+
+@media (max-width: 768px) {
+    #main-header {
+         padding: 15px 20px; /* Menos padding em telas menores */
+    }
+     #main-header .logo img {
+        width: 150px; /* Logo menor */
+     }
+     #main-header .agenda {
+         padding: 8px 15px;
+         font-size: 0.9rem;
+     }
+     /* Se o botão AGENDE AGORA também deve sumir e ir para o menu: */
+     /* #main-header .agenda { display: none; } */ 
+}

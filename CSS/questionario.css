@@ -1,0 +1,533 @@
+/* Estilos para questionario_rmdq.html (Adicionar ao index.css ou criar questionario.css) */
+
+.questionario-container {
+    max-width: 700px;
+    margin: 3rem auto; /* Aumenta margem superior/inferior */
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', sans-serif;
+    text-align: center; /* Centraliza h2 */
+}
+
+.questionario-container h2 {
+    color: #cba788;
+    margin-bottom: 25px;
+    font-size: 2rem; /* Ajuste tamanho */
+}
+
+.instructions {
+    text-align: left;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 5px solid #cba788;
+}
+
+.instructions p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.instructions ul {
+    margin-top: 15px;
+    margin-left: 20px;
+    color: #555;
+}
+
+.instructions li {
+    margin-bottom: 8px;
+}
+
+#start-button {
+    display: block;
+    margin: 25px auto 0;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    background-color: #a87b60; /* Cor mais escura */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#start-button:hover {
+    background-color: #8a6a50; /* Cor mais escura no hover */
+}
+
+
+.quiz-area {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #fff; /* Fundo branco para área do quiz */
+}
+
+.progress {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.question-text {
+    font-size: 1.3rem; /* Tamanho maior para a pergunta */
+    color: #333;
+    margin-bottom: 30px;
+    min-height: 60px; /* Garante espaço mesmo para perguntas curtas */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espaço entre botões */
+}
+
+.options button {
+    padding: 15px 40px; /* Botões maiores */
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    min-width: 120px;
+}
+
+.options button.yes-button {
+    background-color: #9abf8b; /* Verde claro */
+    color: #155724; /* Verde escuro texto */
+}
+
+.options button.yes-button:hover {
+    background-color: #84a874;
+    transform: translateY(-2px);
+}
+
+.options button.no-button {
+    background-color: #f5c6cb; /* Vermelho claro */
+    color: #721c24; /* Vermelho escuro texto */
+}
+
+.options button.no-button:hover {
+    background-color: #f1b0b7;
+    transform: translateY(-2px);
+}
+
+
+.result-area {
+    margin-top: 30px;
+    padding: 25px;
+    background-color: #e9ecef; /* Fundo cinza claro */
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #ced4da;
+}
+
+.result-area h3 {
+    color: #155724; /* Verde escuro */
+    margin-bottom: 15px;
+}
+
+.result-area p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Estilos adicionados para interpretação e botão CTA */
+.result-area #rmdq-interpretation.interpretation-level {
+    display: inline-block; /* Para permitir padding/margin */
+    padding: 8px 15px;
+    margin: 10px 0;
+    border-radius: 20px; /* Bordas arredondadas */
+    font-size: 1.4rem; /* Maior destaque */
+    font-weight: bold;
+    color: white; /* Cor do texto padrão */
+    background-color: #6c757d; /* Cor padrão (cinza) */
+}
+
+/* Cores específicas por nível (opcional, mas recomendado) */
+.result-area #rmdq-interpretation.level-minima { background-color: #28a745; } /* Verde */
+.result-area #rmdq-interpretation.level-leve { background-color: #ffc107; color: #333; } /* Amarelo */
+.result-area #rmdq-interpretation.level-moderada { background-color: #fd7e14; } /* Laranja */
+.result-area #rmdq-interpretation.level-severa { background-color: #dc3545; } /* Vermelho */
+
+
+.result-area .cta-button {
+    margin-top: 15px;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    background-color: #a87b60; /* Cor primária do site */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.result-area .cta-button:hover {
+    background-color: #8a6a50; /* Cor mais escura */
+    transform: translateY(-2px);
+}
+
+.result-area button { /* Estilo genérico para outros botões no resultado */
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #6c757d; /* Cinza */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.result-area button:hover{
+    background-color: #5a6268;
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .questionario-container {
+        margin: 2rem 15px;
+        padding: 20px;
+    }
+    .questionario-container h2 {
+        font-size: 1.6rem;
+    }
+    .question-text {
+        font-size: 1.1rem;
+    }
+    .options button {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+}
+
+/* Link da Referência */
+.reference-link {
+    font-size: 0.8em;
+    margin-left: 8px;
+    color: #0d6efd; /* Azul link */
+    text-decoration: none;
+    vertical-align: middle; /* Alinha com o texto da interpretação */
+}
+
+.reference-link:hover {
+    text-decoration: underline;
+}
+
+/* Modal da Referência */
+.modal-ref {
+    display: none; /* Oculto por padrão */
+    position: fixed; /* Fica fixo na tela */
+    z-index: 1001; /* Fica acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Permite scroll se o conteúdo for grande */
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo semi-transparente */
+    backdrop-filter: blur(5px); /* Efeito de desfoque */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+.modal-ref-content {
+    background-color: #fefefe;
+    margin: auto; /* Necessário para centralizar verticalmente em alguns casos */
+    padding: 25px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px; /* Largura máxima */
+    border-radius: 8px;
+    position: relative; /* Para posicionar o botão de fechar */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+.modal-ref-content h4 {
+    margin-top: 0;
+    color: #cba788; /* Cor do seu site */
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.modal-ref-content .reference-text {
+    font-size: 0.9em;
+    line-height: 1.5;
+    color: #333;
+}
+
+.close-ref-btn {
+    color: #aaa;
+    position: absolute; /* Posiciona relativo ao modal-ref-content */
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-ref-btn:hover,
+.close-ref-btn:focus {
+    color: black;
+    text-decoration: none;
+}
+
+/* Estilos para o Modal de Informações do Paciente */
+#patient-info-modal .modal-ref-content {
+    max-width: 400px; /* Um pouco mais largo para os inputs */
+}
+
+#patient-info-modal label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    font-size: 0.9em;
+}
+
+#patient-info-modal input[type="text"],
+#patient-info-modal input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    margin-bottom: 5px; /* Reduzido */
+}
+
+#patient-info-modal .close-patient-info-btn {
+     /* Usa a mesma classe base, mas permite override se necessário */
+    color: #aaa;
+    position: absolute; 
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+#patient-info-modal .close-patient-info-btn:hover {
+    color: black;
+}
+
+/* Herda o estilo do botão de envio do WhatsApp da área de resultado */
+#patient-info-modal .whatsapp-send-button { 
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    background-color: #25D366; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    display: inline-flex; 
+    align-items: center;
+    gap: 8px; 
+    width: 100%; /* Ocupa largura total no modal */
+    justify-content: center; /* Centraliza conteúdo do botão */
+}
+#patient-info-modal .whatsapp-send-button:hover {
+     background-color: #1ebe5d; 
+    transform: translateY(-2px);
+}
+
+.result-area .download-pdf-button {
+    margin-top: 15px;
+    margin-bottom: 10px; /* Espaço antes do texto do WhatsApp */
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    background-color: #0d6efd; /* Azul */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    display: inline-flex; 
+    align-items: center;
+    gap: 8px; 
+}
+
+.result-area .download-pdf-button:hover {
+    background-color: #0b5ed7; /* Azul mais escuro */
+    transform: translateY(-2px);
+}
+
+.result-area .download-pdf-button i {
+    font-size: 1.2em; /* Ícone um pouco maior */
+}
+
+#main-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    padding: 20px 40px; 
+    z-index: 100; 
+    background-color: transparent; /* Padrão transparente para a home */
+    transition: background-color 0.4s ease-out, box-shadow 0.4s ease-out; 
+    gap: 10%; 
+}
+
+/* --- Estilos do Header QUANDO ROLADO (.scrolled) OU SÓLIDO (.header-solid) --- */
+/* Aplicar estilos a AMBAS as classes */
+#main-header.scrolled,
+#main-header.header-solid {
+    background-color: #ffffff; /* Fundo branco sólido */
+    /* background-color: #FDFBF8; */ /* Ou bege claro */
+    /* background-color: #cba788; */ /* Ou a cor original */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+}
+
+/* --- Logo --- */
+#main-header .logo img {
+    width: 180px; 
+    transition: filter 0.4s ease-out;
+}
+
+/* Logo no estado inicial (transparente - :not(.scrolled):not(.header-solid)) */
+/* Só aplica filtro se NÃO tiver .scrolled E NÃO tiver .header-solid */
+/* #main-header:not(.scrolled):not(.header-solid) .logo img { */
+     /* filter: brightness(0) invert(1); /* Deixa a imagem branca (se necessário) */
+     /* Se o logo original já for claro, remova ou comente */
+/* } */
+
+/* Logo no estado rolado OU sólido */
+#main-header.scrolled .logo img,
+#main-header.header-solid .logo img {
+    filter: none; 
+}
+
+
+/* --- Navegação --- */
+#main-header nav {
+    display: flex; 
+    gap: 25px; 
+}
+
+#main-header nav a {
+    text-decoration: none;
+    font-family: 'Poppins', 'Lucida Sans', sans-serif; 
+    font-weight: 500; 
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative; 
+    padding-bottom: 5px; 
+    transition: color 0.4s ease-out;
+    /* Cor inicial (transparente) */
+    color: #ffffff; 
+}
+/* Cor dos links quando rolado OU sólido */
+#main-header.scrolled nav a,
+#main-header.header-solid nav a {
+    color: #333333; /* Cor escura para fundo claro */
+    /* color: #ffffff; */ /* Se o fundo rolado/sólido for escuro */
+}
+
+/* Efeito de sublinhado */
+#main-header nav a::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px; transition: width 0.3s ease-out;
+    /* Cor inicial */
+    background-color: #ffffff; 
+}
+/* Cor do sublinhado quando rolado OU sólido */
+#main-header.scrolled nav a::after,
+#main-header.header-solid nav a::after {
+     background-color: #cba788; 
+}
+#main-header nav a:hover::after { width: 100%; }
+
+/* Cor do link no hover */
+#main-header:not(.scrolled):not(.header-solid) nav a:hover {
+     color: #ffffff; /* Mantém branco no hover transparente */
+}
+#main-header.scrolled nav a:hover,
+#main-header.header-solid nav a:hover {
+     color: #a87b60; /* Cor de destaque no hover sólido/rolado */
+}
+
+/* --- Botão CTA --- */
+#main-header .agenda {
+    padding: 10px 20px; border: none; border-radius: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.4s ease-out, color 0.4s ease-out, box-shadow 0.3s;
+    display: flex; align-items: center; gap: 8px;
+    font-weight: bold; cursor: pointer;
+    /* Estilo inicial (transparente) */
+    background-color: rgba(255, 255, 255, 0.9); 
+    color: #a87b60; 
+}
+/* Estilo do botão quando rolado OU sólido */
+#main-header.scrolled .agenda,
+#main-header.header-solid .agenda {
+    background-color: #cba788; 
+    color: #ffffff; 
+}
+#main-header .agenda i { transition: color 0.4s ease-out; }
+/* Cor do ícone quando rolado OU sólido */
+#main-header.scrolled .agenda i,
+#main-header.header-solid .agenda i { color: #ffffff; }
+#main-header .agenda:hover { box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); transform: translateY(-2px); }
+
+/* --- Ícone Hamburger --- */
+#main-header .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; z-index: 1001; }
+#main-header .hamburger div { width: 25px; height: 3px; transition: background-color 0.4s ease-out, transform 0.3s ease, opacity 0.3s ease;
+    /* Cor inicial (transparente) */
+    background-color: #ffffff; 
+}
+/* Cor do hamburger quando rolado OU sólido */
+#main-header.scrolled .hamburger div,
+#main-header.header-solid .hamburger div {
+     background-color: #333333; /* Cor escura */
+     /* background-color: #ffffff; */ /* Se fundo for escuro */
+}
+
+/* Animação Hamburger -> X (sem alterações, mas garante que a cor do X funcione) */
+#main-header .hamburger.active div { background-color: #ffffff !important; /* Força branco no X */ }
+#main-header .hamburger.active div:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+#main-header .hamburger.active div:nth-child(2) { opacity: 0; }
+#main-header .hamburger.active div:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* --- Ajustes Responsivos --- */
+@media (max-width: 900px) { /* Ponto onde a navegação pode começar a quebrar */
+    #main-header nav {
+        display: none; /* Esconde navegação inline */
+    }
+    #main-header .hamburger {
+        display: flex; /* Mostra o hamburger */
+    }
+     #main-header {
+         justify-content: space-between; /* Afasta logo e hamburger/botão */
+         gap: 0; /* Remove gap central */
+     }
+}
+
+@media (max-width: 768px) {
+    #main-header {
+         padding: 15px 20px; /* Menos padding em telas menores */
+    }
+     #main-header .logo img {
+        width: 150px; /* Logo menor */
+     }
+     #main-header .agenda {
+         padding: 8px 15px;
+         font-size: 0.9rem;
+     }
+     /* Se o botão AGENDE AGORA também deve sumir e ir para o menu: */
+     /* #main-header .agenda { display: none; } */ 
+}

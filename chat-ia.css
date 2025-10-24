@@ -1,0 +1,191 @@
+/* chat-ia.css */
+
+/* Botão Flutuante */
+#chat-ia-button {
+    position: fixed;
+    bottom: 90px; /* Ajuste para não sobrepor o botão do WhatsApp */
+    right: 20px;
+    background-color: #a87b60; /* Cor complementar ao site */
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    font-size: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    transition: transform 0.3s ease;
+}
+
+#chat-ia-button:hover {
+    transform: scale(1.1);
+}
+
+/* Janela de Chat */
+#chat-ia-window {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 350px;
+    max-height: 500px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none; /* Escondido inicialmente */
+}
+
+#chat-ia-window.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Cabeçalho do Chat */
+.chat-ia-header {
+    background-color: #cba788;
+    color: white;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.chat-ia-header button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Corpo das Mensagens */
+.chat-ia-body {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Estilo das Mensagens */
+.chat-message {
+    padding: 8px 12px;
+    border-radius: 15px;
+    max-width: 80%;
+    word-wrap: break-word;
+    font-size: 0.9rem;
+}
+
+.user-message {
+    background-color: #d1e7dd; /* Verde claro */
+    color: #0f5132;
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+}
+
+.bot-message {
+    background-color: #e9ecef; /* Cinza claro */
+    color: #343a40;
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+}
+
+.bot-message.important { /* Mensagem de aviso */
+    background-color: #fff3cd;
+    color: #664d03;
+    font-weight: bold;
+}
+
+.bot-message ul {
+    margin-top: 5px;
+    margin-left: 20px; /* Indentação da lista */
+    padding-left: 0;
+}
+.bot-message li {
+    margin-bottom: 3px;
+}
+
+/* Área de Input */
+.chat-ia-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+
+/* Botões de Opção */
+.chat-options button {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 10px;
+    background-color: #cba788;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.2s;
+}
+
+.chat-options button:hover {
+    background-color: #a87b60;
+}
+
+.chat-options button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Mensagem de Carregando */
+.loading-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.loading-indicator span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin: 0 2px;
+    background-color: #cba788;
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.loading-indicator span:nth-child(1) { animation-delay: -0.32s; }
+.loading-indicator span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1.0); }
+}
+
+/* Responsividade Simples */
+@media (max-width: 480px) {
+    #chat-ia-window {
+        width: 90%;
+        max-height: 80%;
+        bottom: 10px;
+        right: 10px;
+    }
+    #chat-ia-button {
+        bottom: 80px; /* Ajuste para celular */
+        right: 10px;
+    }
+}

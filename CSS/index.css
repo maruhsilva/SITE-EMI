@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+html {
+  /* Deixa espaço no topo ao rolar para âncoras, igual à altura do header fixo */
+  scroll-padding-top: 80px; /* <-- SUBSTITUA 90px PELA ALTURA EXATA DO SEU HEADER */
+
+  /* Opcional: Adiciona rolagem suave ao clicar nos links */
+  scroll-behavior: smooth; 
+}
+
 header {
   display: flex;
   justify-content: center;
@@ -12,6 +20,201 @@ header {
   padding: 30px 20px;
   color: white;
   gap: 10%;
+}
+
+/* Adicionar/Modificar em CSS/index.css */
+
+/* --- Estilos Base do Header --- */
+#main-header {
+    position: fixed; /* Fixo no topo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Ou space-around / space-between */
+    align-items: center;
+    padding: 20px 40px; /* Ajuste o padding conforme necessário */
+    z-index: 100; /* Garante que fique acima da maioria dos elementos */
+    background-color: transparent; /* Estado inicial transparente */
+    transition: background-color 0.4s ease-out, box-shadow 0.4s ease-out; /* Transição suave */
+    gap: 10%; /* Espaçamento entre logo, nav, botão */
+}
+
+/* --- Estilos do Header QUANDO ROLADO (.scrolled) --- */
+#main-header.scrolled {
+    background-color: #ffffff; /* Fundo branco sólido ao rolar */
+    /* background-color: #FDFBF8; */ /* Ou um bege claro */
+    /* background-color: #cba788; */ /* Ou a cor original */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* --- Logo --- */
+#main-header .logo img {
+    width: 180px; /* Ajuste conforme necessário */
+    transition: filter 0.4s ease-out; /* Transição para o filtro */
+    background-color: rgb(255, 255, 255);
+    border-radius: 50px;
+}
+
+/* Logo no estado inicial (sobre o vídeo) - Assumindo que o logo precisa ser claro */
+/* Se o seu logo PNG já for claro/branco, você não precisa do filtro invert */
+/* #main-header:not(.scrolled) .logo img { */
+     /* filter: brightness(0) invert(1); */
+     /* Se o logo original já for claro, remova ou comente a linha acima */
+/* } */
+
+/* Logo no estado rolado (sobre fundo sólido) - Volta ao normal */
+#main-header.scrolled .logo img {
+    filter: none; 
+
+}
+
+
+/* --- Navegação --- */
+#main-header nav {
+    display: flex; /* Mantém visível em desktop */
+    gap: 25px; /* Aumenta o espaçamento */
+}
+
+#main-header nav a {
+    text-decoration: none;
+    color: #ffffff; /* Cor inicial (branca) */
+    font-family: 'Poppins', 'Lucida Sans', sans-serif; /* Exemplo de fonte moderna */
+    font-weight: 500; /* Peso médio */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative; /* Para o efeito de sublinhado */
+    padding-bottom: 5px; /* Espaço para o sublinhado */
+    transition: color 0.4s ease-out;
+}
+/* Cor dos links quando rolado */
+#main-header.scrolled nav a {
+    color: #333333; /* Cor escura para fundo claro */
+    /* color: #ffffff; */ /* Se o fundo rolado for escuro (#cba788) */
+}
+
+/* Efeito de sublinhado no hover */
+#main-header nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ffffff; /* Cor inicial do sublinhado */
+    transition: width 0.3s ease-out;
+}
+/* Cor do sublinhado quando rolado */
+#main-header.scrolled nav a::after {
+     background-color: #cba788; /* Cor do site para o sublinhado */
+}
+
+#main-header nav a:hover::after {
+    width: 100%; /* Expande o sublinhado no hover */
+}
+#main-header nav a:hover {
+     color: #ffffff; /* Mantém branco no hover inicial */
+}
+#main-header.scrolled nav a:hover {
+     color: #a87b60; /* Cor de destaque no hover rolado */
+}
+
+/* --- Botão CTA (Agende Agora) --- */
+#main-header .agenda {
+    background-color: rgba(255, 255, 255, 0.9); /* Branco semi-transparente inicial */
+    color: #a87b60; /* Cor do texto escura */
+    padding: 10px 20px;
+    border: none; /* Remove borda antiga */
+    border-radius: 20px; /* Mais arredondado */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.4s ease-out, color 0.4s ease-out, box-shadow 0.3s;
+    display: flex;
+    align-items: center; /* Alinha ícone e texto verticalmente */
+    gap: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+/* Estilo do botão quando rolado */
+#main-header.scrolled .agenda {
+    background-color: #cba788; /* Cor original */
+    color: #ffffff; /* Texto branco */
+}
+
+#main-header .agenda i {
+     transition: color 0.4s ease-out;
+}
+#main-header.scrolled .agenda i {
+     color: #ffffff; /* Ícone branco quando rolado */
+}
+
+
+#main-header .agenda:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* --- Ícone Hamburger --- */
+#main-header .hamburger {
+    display: none; /* Mantém oculto em desktop */
+    /* Estilos existentes */
+    flex-direction: column; cursor: pointer; gap: 5px; z-index: 1001;
+}
+
+#main-header .hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff; /* Cor inicial (branca) */
+    transition: background-color 0.4s ease-out, transform 0.3s ease, opacity 0.3s ease;
+}
+/* Cor do hamburger quando rolado */
+#main-header.scrolled .hamburger div {
+     background-color: #333333; /* Cor escura */
+     /* background-color: #ffffff; */ /* Se o fundo rolado for escuro */
+}
+
+
+/* Animação do Hamburger para X (pode usar o seu JS existente se já faz isso) */
+/* Se seu JS adiciona 'active' ao hamburger para animar para X */
+#main-header .hamburger.active div:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    background-color: #ffffff; /* Cor do X (geralmente branco mesmo com fundo) */
+}
+#main-header .hamburger.active div:nth-child(2) {
+    opacity: 0;
+}
+#main-header .hamburger.active div:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+     background-color: #ffffff;
+}
+
+
+/* --- Ajustes Responsivos --- */
+@media (max-width: 900px) { /* Ponto onde a navegação pode começar a quebrar */
+    #main-header nav {
+        display: none; /* Esconde navegação inline */
+    }
+    #main-header .hamburger {
+        display: flex; /* Mostra o hamburger */
+    }
+     #main-header {
+         justify-content: space-between; /* Afasta logo e hamburger/botão */
+         gap: 0; /* Remove gap central */
+     }
+}
+
+@media (max-width: 768px) {
+    #main-header {
+         padding: 15px 20px; /* Menos padding em telas menores */
+    }
+     #main-header .logo img {
+        width: 150px; /* Logo menor */
+     }
+     #main-header .agenda {
+         padding: 8px 15px;
+         font-size: 0.9rem;
+     }
+     /* Se o botão AGENDE AGORA também deve sumir e ir para o menu: */
+     /* #main-header .agenda { display: none; } */ 
 }
 
 .logo {
@@ -431,6 +634,110 @@ nav a:hover {
   inset: 0;
   background: rgba(0, 0, 0, 0.6); /* Opacidade de 0.8 */
   z-index: 1;
+}
+
+.modal-servico {
+  display: none; /* Oculto por padrão */
+  position: fixed; 
+  z-index: 1001; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.7); 
+  backdrop-filter: blur(5px); 
+  justify-content: center; 
+  align-items: center; 
+  /* Adiciona display: flex no JS para ativar */
+}
+
+.modal-servico-content {
+    background-color: #fefefe;
+    margin: auto; 
+    padding: 30px;
+    border: 1px solid #ddd;
+    width: 90%;
+    max-width: 650px; 
+    border-radius: 10px;
+    position: relative; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: fadeInModal 0.3s ease-out; /* Animação de entrada */
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+.close-servico-btn {
+    color: #aaa;
+    position: absolute; 
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1; /* Alinha melhor o X */
+}
+
+.close-servico-btn:hover,
+.close-servico-btn:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.modal-servico-content h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #a87b60; /* Cor do site */
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.video-placeholder {
+    width: 100%;
+    height: 250px; /* Altura do placeholder */
+    background-color: #e9ecef; /* Cinza claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    color: #6c757d; /* Cinza texto */
+    font-style: italic;
+}
+/* Se usar tag <video> ou <iframe>, estilize-os aqui */
+/* Ex:
+.modal-servico-content video,
+.modal-servico-content iframe {
+    width: 100%;
+    height: 300px;
+    display: block;
+    margin-bottom: 20px;
+}
+*/
+
+.modal-servico-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    text-align: justify; /* Justifica o texto da descrição */
+}
+
+/* Responsividade do Modal */
+@media (max-width: 768px) {
+    .modal-servico-content {
+        padding: 20px;
+        max-width: 90%;
+    }
+    .modal-servico-content h3 {
+        font-size: 1.5rem;
+    }
+    .video-placeholder {
+        height: 200px;
+    }
 }
 
 .hero-content {
@@ -969,4 +1276,3 @@ footer {
       height: 30px;
   }
 }
-

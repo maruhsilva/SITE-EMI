@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fisio Emi - Questionário RMDQ</title>
+    <script src="https://kit.fontawesome.com/43b36f20b7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="CSS/index.css">
+    <link rel="stylesheet" href="CSS/questionario.css"> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script defer src="JS/script.js"></script> 
+    <script defer src="JS/questionario_rmdq.js"></script> 
+</head>
+<body>
+    <header id="main-header" class="header-solid">
+        <div class="logo"><img src="Diana Psicóloga Logo (11).png" alt="logo"></div>
+        <nav>
+          <a href="index.html">Início</a>
+          <a href="index.html#sobre">Sobre</a>
+          <a href="index.html#servicos">Serviços</a>
+          <a href="contato.html">Contato</a>
+        </nav>
+        <div class="hamburger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <button class="agenda" onclick="window.location.href='agendamento.html'">
+            <i class="fa-regular fa-calendar-days"></i> AGENDE AGORA
+        </button>
+    </header>
+
+    <div class="menu-overlay"></div>
+
+    <div class="menu">
+      <button class="close-btn">&times;</button>
+      <a href="index.html">Home</a>
+      <a href="index.html#sobre">Sobre</a>
+      <a href="index.html#servicos">Serviços</a>
+      <a href="index.html#footer">Contato</a>
+    </div>
+    <main class="questionario-container">
+        <h2>Questionário Roland-Morris (Dor Lombar)</h2>
+        
+        <div id="rmdq-instructions" class="instructions">
+            <p>Olá! Este questionário nos ajudará a entender como sua dor lombar afeta sua vida diária.</p>
+            <p><strong>Instruções:</strong></p>
+            <ul>
+                <li>Pense em como você se sente <strong>hoje</strong>.</li>
+                <li>Leia cada frase atentamente.</li>
+                <li>Clique em "Sim" se a frase descreve sua situação hoje devido à dor nas costas.</li>
+                <li>Clique em "Não" se a frase não se aplica a você hoje.</li>
+                <li>Ao responder, pense nas dificuldades que você tem por causa da dor nas costas.</li>
+                <li>Responda a todas as 24 perguntas.</li>
+            </ul>
+            <button id="start-button">Iniciar Questionário</button>
+        </div>
+
+        <div id="rmdq-quiz" class="quiz-area" style="display: none;">
+            <div id="rmdq-progress" class="progress">Pergunta 1 de 24</div>
+            <p id="rmdq-question" class="question-text">Carregando pergunta...</p>
+            <div id="rmdq-options" class="options">
+                </div>
+        </div>
+
+        <div id="rmdq-result" class="result-area" style="display: none;">
+            <h3>Questionário Concluído!</h3>
+            
+            <p>Com base nas suas respostas, seu nível de incapacidade funcional devido à dor lombar é considerado:</p>
+            <p>
+                <strong id="rmdq-interpretation" class="interpretation-level"></strong>
+                <a href="#" id="ref-link" class="reference-link">(ver referência)</a>
+            </p> 
+            
+            <p style="font-size: 0.9rem; color: #555;">(Sua pontuação: <span id="rmdq-score">0</span> de 24)</p> 
+            
+            <hr style="margin: 20px 0; border-top: 1px solid #ccc;">
+
+            <p>Você pode baixar o resultado detalhado ou compartilhá-lo com a fisioterapeuta.</p>
+
+             <button id="download-pdf-button" class="download-pdf-button">
+                <i class="fa-solid fa-file-pdf"></i> Baixar Resultado (PDF)
+            </button>
+            
+            <div id="status-message" style="margin-top: 10px; font-weight: bold;"></div>
+
+            <p style="margin-top: 15px;">Para enviar um resumo e iniciar contato via WhatsApp (o resultado detalhado também será enviado por email para a fisioterapeuta):</p>
+            
+            <button id="open-patient-info-modal-button" class="whatsapp-send-button"> 
+                <i class="fa-brands fa-whatsapp"></i> Compartilhar Resultado
+            </button>
+            
+            <p style="margin-top: 15px;">Ou agende sua consulta diretamente:</p>
+            
+            <button class="cta-button" onclick="window.location.href='agendamento.html'">Agendar Consulta</button>
+            <button onclick="window.location.href='index.html'">Voltar ao Início</button>
+        </div>
+        </main> <div id="reference-modal" class="modal-ref" style="display: none;">
+        <div class="modal-ref-content">
+            <span class="close-ref-btn">&times;</span>
+            <h4>Referência da Interpretação</h4>
+            <p class="reference-text">
+                <strong>Título:</strong> QUESTIONÁRIO DE INCAPACIDADE DE ROLAND MORRIS: Adaptação e Validação para os Doentes de Língua Portuguesa com Lombalgia<br>
+                <strong>Autores:</strong> J. MONTEIRO, L. FAÍSCA, O. NUNES, J. HIPÓLITO<br>
+                <strong>Publicação:</strong> Acta Med Port 2010; 23: 761-766
+            </p>
+            <p style="font-size: 0.8em; margin-top: 15px;">
+                A interpretação dos scores (Mínima, Leve, Moderada, Severa) é baseada em práticas clínicas comuns derivadas de estudos como este. Consulte um profissional para avaliação completa.
+            </p>
+        </div>
+    </div>
+    <div id="patient-info-modal" class="modal-ref" style="display: none;">
+        <div class="modal-ref-content">
+            <span class="close-patient-info-btn">&times;</span>
+            <h4>Informações para Contato</h4>
+            <p style="font-size: 0.9em; margin-bottom: 15px;">Preencha seus dados. O resultado detalhado será enviado por email à fisioterapeuta e o WhatsApp abrirá com um resumo.</p>
+            
+            <label for="patient-name">Nome:</label>
+            <input type="text" id="patient-name" placeholder="Seu nome completo" required>
+            
+            <label for="patient-email" style="margin-top: 10px;">Email:</label>
+            <input type="email" id="patient-email" placeholder="Seu melhor email" required>
+            
+            <p id="patient-info-error" style="color: red; font-size: 0.8em; margin-top: 10px; display: none;">Preencha todos os campos.</p>
+            
+            <button id="confirm-share-button" class="whatsapp-send-button" style="width: 100%; margin-top: 20px;">
+                Confirmar e Compartilhar
+            </button>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container" id="footer"> <div class="footer-logo"> <div class="logo"><img src="Diana Psicóloga Logo (11).png" alt="logo"></div> <p>Cuidando da sua saúde e bem-estar com dedicação.</p> </div> <div class="footer-links"> <h3>Navegação</h3> <ul> 
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="agendamento.html">Agendamento</a></li>
+                <li><a href="orcamentos.html">Orçamentos</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="questionario_rmdq.html">Questionário</a></li>
+                <li><a href="login.php" target="_blank">Área do ADM</a></li>        </ul> </div> <div class="footer-contact"> <h3>Contato</h3> <p><i class="fa-solid fa-phone"></i> (12) 98179-4612</p> <p><i class="fa-solid fa-envelope"></i> contato@fisioemili.com</p> <p><i class="fa-solid fa-location-dot"></i>São José dos Campos - SP</p> </div> <div class="footer-social"> <h3>Redes Sociais</h3> <div class="social-icons"> <a href="https://www.instagram.com/emilimendes/" target="_blank"><i class="fa-brands fa-instagram"></i></a> <a href="" target="_blank"><i class="fa-brands fa-facebook"></i></a> <a href="https://wa.me/55012981794612" target="_blank"><i class="fa-brands fa-whatsapp"></i></a> </div> </div> </div> <div class="footer-bottom"> <p>&copy; 2025 Fisio Emi - Todos os direitos reservados. Desenvolvido por <a href="https://mswebwork.com.br" target="_blank" rel="noopener noreferrer" style="color: aliceblue;">MS WebWork</a></p> </div>
+    </footer>
+    </body>
+</html>

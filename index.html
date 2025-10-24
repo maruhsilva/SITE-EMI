@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fisio Emi</title>
+    <title>Fisio Emi - Home</title>
     <script src="https://kit.fontawesome.com/43b36f20b7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="CSS/index.css">
     <script defer src="JS/script.js"></script>
+    <script defer src="JS/service-modal.js"></script>
+    <script defer src="JS/scroll.js"></script>
 </head>
 <body>
-    <header>
-        <div class="logo"><img src="E.png" alt="logo"></div>
+    <header id="main-header"> 
+        <div class="logo"><img src="Diana Psicóloga Logo (2).png" alt="logo"></div>
         <nav>
           <a href="#inicio">Início</a>
           <a href="#sobre">Sobre</a>
           <a href="#servicos">Serviços</a>
-          <a href="#footer">Contato</a>
+          <a href="contato.html">Contato</a>
         </nav>
         <div class="hamburger">
           <div></div>
@@ -34,7 +36,7 @@
       <a href="index.html">Home</a>
       <a href="index.html#sobre">Sobre</a>
       <a href="index.html#servicos">Serviços</a>
-      <a href="index.html#footer">Contato</a>
+      <a href="contato.html">Contato</a>
     </div>
     
     <section id="inicio" class="hero">
@@ -82,7 +84,7 @@
               </div>
           </div>
 
-          <a href="contato.html" class="botao">Entre em contato</a>
+          <a href="https://wa.me/55012981794612" target="_blank" class="botao">Entre em contato</a>
       </div>
   </div>
 </section>
@@ -93,28 +95,39 @@
     <section id="servicos" class="servicos">
       <h2>Serviços Oferecidos</h2>
       <div class="servico-container">
-          <div class="servico">
+          <div class="servico" data-service="reabilitacao">
               <i class="fa-solid fa-spa"></i>
               <h3>Reabilitação Física</h3>
               <p>Tratamentos personalizados para recuperar movimentos e fortalecer o corpo.</p>
           </div>
-          <div class="servico">
+          <div class="servico" data-service="esportiva">
               <i class="fa-solid fa-heartbeat"></i>
               <h3>Fisioterapia Esportiva</h3>
               <p>Prevenção e recuperação de lesões para atletas e esportistas.</p>
           </div>
-          <div class="servico">
+          <div class="servico" data-service="dor">
               <i class="fa-solid fa-user-md"></i>
               <h3>Tratamento de Dor</h3>
               <p>Redução de dores musculares e articulares com técnicas especializadas.</p>
           </div>
-          <div class="servico">
+          <div class="servico" data-service="pos-cirurgico">
               <i class="fa-solid fa-hand-holding-medical"></i>
               <h3>Pós-Cirúrgico</h3>
               <p>Acelere sua recuperação com fisioterapia pós-operatória eficaz.</p>
           </div>
       </div>
   </section>
+
+  <div id="service-modal" class="modal-servico" style="display: none;">
+      <div class="modal-servico-content">
+          <span class="close-servico-btn">&times;</span>
+          <h3 id="modal-servico-title">Título do Serviço</h3>
+          <div id="modal-servico-video" class="video-placeholder">
+              <p>Vídeo/Animação em breve!</p>
+          </div>
+          <p id="modal-servico-description">Descrição detalhada do serviço...</p>
+      </div>
+  </div>
   
 
     <a href="https://wa.me/55012981794612" target="_blank" class="whatsapp-button" title="Fale conosco no WhatsApp">
@@ -125,7 +138,7 @@
   <footer>
     <div class="footer-container" id="footer">
         <div class="footer-logo">
-          <div class="logo"><img src="E.png" alt="logo"></div>
+          <div class="logo"><img src="Diana Psicóloga Logo (11).png" alt="logo"></div>
             <p>Cuidando da sua saúde e bem-estar com dedicação.</p>
         </div>
 
@@ -137,7 +150,8 @@
                 <li><a href="#servicos">Serviços</a></li>
                 <li><a href="agendamento.html">Agendamento</a></li>
                 <li><a href="orcamentos.html">Orçamentos</a></li>
-                <li><a href="#footer">Contato</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="questionario_rmdq.html">Questionário</a></li>
                 <li><a href="login.php" target="_blank">Área do ADM</a></li>
             </ul>
         </div>
@@ -164,6 +178,8 @@
     </div>
 </footer>
 
+    
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const whatsappButton = document.querySelector(".whatsapp-button");
@@ -186,5 +202,8 @@
         checkPosition(); // Executa a verificação ao carregar
       });
     </script>
+
+    <link rel="stylesheet" href="chat-ia.css">
+    <script defer src="chat-ia.js"></script>
 </body>
 </html>

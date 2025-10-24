@@ -20,4 +20,3 @@ overlay.addEventListener('click', () => {
   overlay.classList.remove('show');
   hamburger.classList.remove('active');
 });
-
