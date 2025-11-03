@@ -9,7 +9,7 @@
 
 html {
   /* Deixa espaço no topo ao rolar para âncoras */
-  scroll-padding-top: 90px; /* AJUSTE A ALTURA DO SEU HEADER */
+  scroll-padding-top: 40px; /* AJUSTE A ALTURA DO SEU HEADER */
   scroll-behavior: smooth; 
 }
 
