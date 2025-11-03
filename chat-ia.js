@@ -367,4 +367,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // A conversa SÓ COMEÇA quando o usuário abre o chat ou se o conhecimento já estiver carregado
     // iniciarConversa(); // Removido daqui, chamado no toggle ou fetch
 
-}); // Fim do DOMContentLoaded
+    // Adicione este bloco no seu JS/script.js, dentro do DOMContentLoaded
+
+    // --- Lógica de Posição do Botão Chat IA (para acompanhar o footer) ---
+    const chatIaButton = document.querySelector("#chat-ia-button");
+    const footerElement = document.querySelector("footer"); // Podemos reutilizar a const 'footer' se ela já existir no escopo
+
+    function checkChatIaPosition() {
+        if (!chatIaButton || !footerElement) return; // Se os elementos não existirem, não faz nada
+        
+        const footerRect = footerElement.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        if (footerRect.top <= windowHeight) {
+            // Se o footer estiver visível, ajusta a posição do botão
+            chatIaButton.style.position = 'absolute'; // Muda para absoluto
+            
+            // Calcula o 'bottom' para ficar 90px acima do topo do footer visível
+            // (O botão WhatsApp fica a 20px, este fica a 90px, mantendo a distância)
+            chatIaButton.style.bottom = `${windowHeight - footerRect.top + 90}px`; 
+        } else {
+            // Se o footer não estiver visível, volta ao normal
+            chatIaButton.style.position = 'fixed'; // Padrão fixo
+            chatIaButton.style.bottom = "90px"; // Posição original do CSS
+        }
+    }
+    
+    // Verifica a posição ao carregar e ao rolar
+    if (chatIaButton && footerElement) {
+         window.addEventListener("scroll", checkChatIaPosition);
+         checkChatIaPosition(); // Executa a verificação ao carregar
+    }
+    // --- Fim da Lógica do Botão Chat IA ---
+
+}); // Certifique-se de que está dentro do fechamento do DOMContentLoaded
