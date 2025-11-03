@@ -1,19 +1,33 @@
-const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-let mesAtual = new Date().getMonth(); // Mês atual
-const anoAtual = 2025;
+// JS/agendamento.js (Versão 2.0 - Corrigido para CSS Unificado)
 
-// Obter a data atual
-const hoje = new Date();
-const diaAtual = hoje.getDate();
-const mesAtualData = hoje.getMonth();
-const anoAtualData = hoje.getFullYear();
+// Constantes e estado global
+const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+let dataAtualJS = new Date(); // Usa a data real do computador
+let mesAtual = dataAtualJS.getMonth();
+let anoAtual = dataAtualJS.getFullYear();
+let diaAtual = -1;
+let mesAtualData = -1;
+let anoAtualData = -1;
 
 // Função para gerar o calendário
 function gerarCalendario() {
     const calendario = document.getElementById('calendario');
     const mesNome = document.getElementById('mes-atual');
+    
+    if (!calendario || !mesNome) {
+        console.error("Elementos do calendário (calendario, mes-atual) não encontrados.");
+        return;
+    }
+
     mesNome.innerText = `${meses[mesAtual]} de ${anoAtual}`;
-    calendario.innerHTML = '';
+    calendario.innerHTML = ''; // Limpa o calendário anterior
+
+    // Obter a data atual
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0); // Zera o horário para comparação
+    diaAtual = hoje.getDate();
+    mesAtualData = hoje.getMonth();
+    anoAtualData = hoje.getFullYear();
 
     // Calcular o primeiro dia do mês e o número de dias
     const primeiroDia = new Date(anoAtual, mesAtual, 1);
@@ -21,48 +35,40 @@ function gerarCalendario() {
     const diasNoMes = ultimoDia.getDate();
     const diaDaSemana = primeiroDia.getDay(); // Dia da semana em que o mês começa (0 = domingo)
 
-    // Obter a data de hoje sem horário para comparação
-    const hoje = new Date();
-    hoje.setHours(0, 0, 0, 0);
-
-    // Preencher os dias da semana
-    const diasDaSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-    for (let diaSemana of diasDaSemana) {
-        let divDiaSemana = document.createElement('div');
-        divDiaSemana.classList.add('dia');
-        divDiaSemana.innerText = diaSemana;
-        calendario.appendChild(divDiaSemana);
-    }
-
-    // Preencher os dias do mês com o alinhamento correto
+    // Preencher os dias vazios do início do mês
     for (let i = 0; i < diaDaSemana; i++) {
         let divDiaVazio = document.createElement('div');
         divDiaVazio.classList.add('dia');
+        divDiaVazio.style.pointerEvents = 'none'; 
+        divDiaVazio.style.background = 'transparent'; 
+        // Remover sombra se a classe .dia tiver
+        divDiaVazio.style.boxShadow = 'none'; 
         calendario.appendChild(divDiaVazio);
     }
 
-    let diaMarcado = -1; // Variável para marcar o dia atual
-    let elementosDias = [];
-
+    // Preencher os dias do mês
     for (let i = 1; i <= diasNoMes; i++) {
         let divDia = document.createElement('div');
         divDia.classList.add('dia');
-        const dataAtual = new Date(anoAtual, mesAtual, i);
-        dataAtual.setHours(0, 0, 0, 0); // Remove horário para comparação
+        
+        const dataAtualIteracao = new Date(anoAtual, mesAtual, i);
+        dataAtualIteracao.setHours(0, 0, 0, 0); // Zera horário para comparação
 
-        // Bloquear domingos
-        if (dataAtual.getDay() === 0) {
+        // 1. Bloquear domingos
+        if (dataAtualIteracao.getDay() === 0) {
             divDia.classList.add('domingo');
             divDia.style.pointerEvents = 'none';
         } 
-        // Bloquear dias passados
-        else if (dataAtual < hoje) {
+        // 2. Bloquear dias passados
+        else if (dataAtualIteracao < hoje) {
             divDia.classList.add('dia-passado');
             divDia.style.pointerEvents = 'none';
         } 
-        // Permitir clique nos dias válidos
+        // 3. Permitir clique nos dias válidos
         else {
-            divDia.onclick = function() { abrirModal(i); };
+            divDia.onclick = function() { 
+                abrirModal(i); 
+            };
         }
 
         divDia.innerText = i;
@@ -70,99 +76,157 @@ function gerarCalendario() {
         // Marcar o dia atual
         if (i === diaAtual && mesAtual === mesAtualData && anoAtual === anoAtualData) {
             divDia.classList.add('ativo');
-            diaMarcado = i;
         }
 
         calendario.appendChild(divDia);
-        elementosDias.push(divDia);
-    }
-
-    // Rolar para o dia atual automaticamente após o calendário ser gerado
-    if (diaMarcado !== -1) {
-        setTimeout(() => {
-            // Encontrar o dia atual no calendário
-            const indiceDiaMarcado = diaMarcado + diaDaSemana;
-            if (elementosDias[indiceDiaMarcado]) {
-                elementosDias[indiceDiaMarcado].scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        }, 100);
     }
 }
-
 
 function mudarMes(direcao) {
     mesAtual += direcao;
-    if (mesAtual > 11) mesAtual = 0; // Se passar de Dezembro, volta para Janeiro
-    if (mesAtual < 0) mesAtual = 11; // Se passar de Janeiro, vai para Dezembro
+    // Lógica para virar o ano
+    if (mesAtual > 11) { 
+        mesAtual = 0; // Janeiro
+        anoAtual++;   // Próximo ano
+    } 
+    if (mesAtual < 0) { 
+        mesAtual = 11; // Dezembro
+        anoAtual--;    // Ano anterior
+    }
+    
     gerarCalendario();
 }
 
+// --- FUNÇÕES DO MODAL (ATUALIZADAS PARA USAR .show) ---
+
 function abrirModal(dia) {
-    const mes = mesAtual + 1; // Como o JS começa os meses em 0, precisamos somar 1
-    const dataSelecionada = `${anoAtual}-${mes.toString().padStart(2, '0')}-${dia.toString().padStart(2, '0')}`;
+    const modal = document.getElementById('modal');
+    const diaSelecionadoSpan = document.getElementById('diaSelecionado');
     
-    document.getElementById('modal').style.display = 'flex';
-    document.getElementById('diaSelecionado').innerText = `${dia} de ${meses[mesAtual]}`;
+    if (!modal || !diaSelecionadoSpan) {
+        console.error("Elementos do modal (modal, diaSelecionado) não encontrados.");
+        return;
+    }
+    
+    diaSelecionadoSpan.innerText = `${dia} de ${meses[mesAtual]}`;
+    
+    document.getElementById('nome').value = '';
+    document.getElementById('whatsapp').value = '';
+    const selectHorarios = document.getElementById('horarios');
+    if (selectHorarios) {
+        selectHorarios.innerHTML = '<option value="">Carregando...</option>';
+        selectHorarios.disabled = true; 
+    }
+
+    // **A LÓGICA CORRETA**
+    modal.classList.add('show');
+    
+    const mesFormatado = (mesAtual + 1).toString().padStart(2, '0');
+    const diaFormatado = dia.toString().padStart(2, '0');
+    const dataSelecionada = `${anoAtual}-${mesFormatado}-${diaFormatado}`;
     
     carregarHorarios(dataSelecionada);
 }
 
 function fecharModal() {
-    document.getElementById('modal').style.display = 'none';
+    const modal = document.getElementById('modal');
+    if (modal) {
+        // **A LÓGICA CORRETA**
+        modal.classList.remove('show');
+    }
 }
 
+function fecharModalAoClicarFora(event) {
+    const modal = document.getElementById('modal');
+    if (event.target === modal) {
+        fecharModal();
+    }
+}
+
+// --- FIM FUNÇÕES DO MODAL ---
+
 function carregarHorarios(data) {
-    fetch(`obter_horarios.php?data=${data}`)
-        .then(response => response.json())
+    const select = document.getElementById("horarios");
+    if (!select) return;
+
+    // Use o caminho correto para o seu script PHP
+    fetch(`obter_horarios.php?data=${data}`) 
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro de rede: ${response.status} ${response.statusText}`);
+            }
+            return response.json(); 
+        })
         .then(data => {
-            const select = document.getElementById("horarios");
-            select.innerHTML = ""; // Limpa a lista antes de adicionar os novos horários
+            select.innerHTML = ""; // Limpa o "Carregando..."
+            select.disabled = false; 
 
             if (data.erro) {
-                console.error("Erro ao buscar horários:", data.erro);
+                console.error("Erro retornado pelo PHP:", data.erro);
+                select.innerHTML = `<option value="">${data.erro}</option>`;
+                select.disabled = true;
                 return;
             }
 
-            let primeiroDisponivel = null;
+            if (data.horarios && data.horarios.length > 0) {
+                let primeiroDisponivel = null;
+                let algumHorarioDisponivel = false;
 
-            data.horarios.forEach(item => {
-                const option = document.createElement("option");
-                option.value = item.horario;
-                option.textContent = item.horario;
+                data.horarios.forEach(item => {
+                    const option = document.createElement("option");
+                    option.value = item.horario;
+                    option.textContent = item.horario;
 
-                // 🔹 Se o horário já foi reservado ou passou do tempo permitido, ele fica desabilitado
-                if (item.ocupado) {
-                    option.disabled = true;
-                    option.textContent += " (Indisponível)";
-                } else if (!primeiroDisponivel) {
-                    primeiroDisponivel = option.value; // Guarda o primeiro horário disponível
+                    if (item.ocupado) {
+                        option.disabled = true;
+                        option.textContent += " (Indisponível)";
+                    } else {
+                        algumHorarioDisponivel = true;
+                        if (!primeiroDisponivel) {
+                            primeiroDisponivel = option.value;
+                        }
+                    }
+                    select.appendChild(option);
+                });
+
+                if (primeiroDisponivel) {
+                    select.value = primeiroDisponivel;
                 }
-
-                select.appendChild(option);
-            });
-
-            // 🔹 Se houver um horário disponível, definir como padrão
-            if (primeiroDisponivel) {
-                select.value = primeiroDisponivel;
+                
+                if (!algumHorarioDisponivel) {
+                    select.innerHTML = '<option value="">Nenhum horário disponível</option>';
+                    select.disabled = true;
+                }
+            } else {
+                 select.innerHTML = '<option value="">Nenhum horário cadastrado</option>';
+                 select.disabled = true;
             }
         })
-        .catch(error => console.error("Erro ao buscar horários:", error));
+        .catch(error => {
+            console.error("Erro no fetch ao buscar horários:", error);
+            select.innerHTML = '<option value="">Erro ao carregar</option>';
+            select.disabled = true;
+        });
 }
-
 
 function salvarAgendamento() {
     const nome = document.getElementById('nome').value.trim();
     const whatsapp = document.getElementById('whatsapp').value.trim();
     const horario = document.getElementById('horarios').value;
     const diaSelecionado = document.getElementById('diaSelecionado').innerText.split(" de ")[0]; 
-    const mes = mesAtual + 1;
-    const dataAgendamento = `${anoAtual}-${mes.toString().padStart(2, '0')}-${diaSelecionado.padStart(2, '0')}`;
+    const mesFormatado = (mesAtual + 1).toString().padStart(2, '0');
+    const diaFormatado = diaSelecionado.toString().padStart(2, '0');
+    const dataAgendamento = `${anoAtual}-${mesFormatado}-${diaFormatado}`;
 
     if (nome === '' || whatsapp === '' || horario === '') {
         alert('Por favor, preencha todos os campos antes de confirmar o agendamento.');
         return;
     }
 
+    const btnConfirmar = document.querySelector(".modal-content button");
+    if (btnConfirmar) btnConfirmar.disabled = true;
+
+    // Use o caminho correto para o seu script PHP
     fetch('salvar_agendamento.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -173,37 +237,24 @@ function salvarAgendamento() {
         if (data.success) {
             alert(data.success);
             fecharModal();
+            // Atualiza os horários para o dia, mostrando que o selecionado agora está indisponível
             carregarHorarios(dataAgendamento);
         } else {
-            alert(data.error);
+            alert(data.error || "Ocorreu um erro desconhecido.");
         }
     })
-    .catch(error => console.error('Erro ao salvar agendamento:', error));
+    .catch(error => {
+        console.error('Erro ao salvar agendamento:', error);
+        alert("Erro de conexão ao tentar salvar.");
+    })
+    .finally(() => {
+         if (btnConfirmar) btnConfirmar.disabled = false;
+    });
 }
 
-
 // Inicializar o calendário ao carregar a página
-window.onload = function() {
-    gerarCalendario();
-};
-
 document.addEventListener("DOMContentLoaded", function () {
-    let hoje = new Date();
-    hoje.setHours(0, 0, 0, 0); // Define a data de hoje sem horário
-
-    document.querySelectorAll(".dia").forEach(dia => {
-        let dataString = dia.getAttribute("data-data"); // Pega a data do atributo
-
-        if (dataString) {
-            let [ano, mes, diaNumero] = dataString.split('-').map(Number);
-            let dataDia = new Date(ano, mes - 1, diaNumero);
-            dataDia.setHours(0, 0, 0, 0);
-
-            if (dataDia < hoje) {
-                dia.classList.add("dia-passado"); // Aplica estilo visual
-                dia.onclick = null; // Remove evento de clique
-                dia.style.pointerEvents = "none"; // Garante que não pode ser clicado
-            }
-        }
-    });
+    // Garante que o script.js (menu, etc.) já tenha rodado se necessário
+    // Chama o gerarCalendario
+    gerarCalendario();
 });

@@ -78,7 +78,7 @@ try {
 
     $mail->send();
 
-    echo "<script>alert('Orçamento enviado com sucesso!'); window.location.href='index.html';</script>";
+    echo "<script>alert('Orçamento enviado com sucesso!'); window.location.href='index';</script>";
 
 } catch (Exception $e) {
     echo "<script>alert('Erro ao enviar o e-mail: {$mail->ErrorInfo}');</script>";

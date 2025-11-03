@@ -53,8 +53,13 @@ header {
 
 /* --- Logo --- */
 #main-header .logo img {
-    width: 180px; 
-    transition: filter 0.4s ease-out;
+    width: 200px; /* Ajuste conforme necessário */
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 2%;
+    transition: filter 0.4s ease-out; /* Transição para o filtro */
+    background-color: rgb(255, 255, 255);
+    border-radius: 50px;
 }
 
 /* Logo no estado inicial (transparente - :not(.scrolled):not(.header-solid)) */
@@ -652,11 +657,90 @@ input, select {
   }
 }
 
+.footer-payment {
+    /* Herda flex: 1; min-width: 250px; do .footer-container div */
+    text-align: center; /* Centraliza o conteúdo desta coluna */
+}
+
+.footer-payment h3 {
+    /* Herda o estilo dos outros títulos h3 do footer */
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #cba788;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #cba788;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.footer-payment .payment-methods-title,
+.footer-payment .partnerships-title {
+    font-size: 1rem;
+    color: #ddd;
+    margin-top: 15px; /* Espaço acima dos títulos menores */
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.payment-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Espaço entre os ícones */
+    flex-wrap: wrap; /* Permite quebrar linha se não couber */
+    margin-bottom: 15px; /* Espaço antes da seção de convênios */
+}
+
+.payment-icons span {
+    display: inline-flex; /* Alinha ícone e texto */
+    align-items: center;
+    gap: 5px; /* Espaço entre ícone e texto */
+    color: #bbb; /* Cor do texto/ícone */
+    font-size: 0.9rem;
+}
+
+.payment-icons i {
+    font-size: 1.3em; /* Tamanho do ícone um pouco maior que o texto */
+    color: #cba788; /* Cor de destaque para os ícones */
+}
+
+.partnership-logos {
+    display: flex;
+    flex-direction: column; /* Um convênio por linha */
+    align-items: center;
+    gap: 8px;
+}
+
+.partnership-logos span {
+    color: #bbb;
+    font-size: 1rem;
+    /* Se usar logos (img), adicione estilo aqui: */
+    /* img { max-height: 30px; width: auto; margin-bottom: 5px; } */
+}
+
+/* Ajuste na Responsividade do Footer (se necessário) */
+/* Se a nova coluna quebrar o layout em telas médias, ajuste o min-width ou flex-basis */
+@media (max-width: 1100px) { /* Exemplo de ponto de quebra */
+     .footer-container div {
+        /* Talvez precise ajustar min-width ou usar flex-basis */
+         min-width: 220px; /* Reduz um pouco */
+     }
+}
+
+@media (max-width: 768px) {
+  /* O footer já vira coluna, então a nova seção se encaixará naturalmente */
+   .footer-payment {
+      margin-top: 20px; /* Adiciona espaço extra quando vira coluna */
+   }
+}
+
 footer {
   background: linear-gradient(135deg, #1c1c1c, #2a2a2a);
   color: #fff;
   padding: 50px 20px;
   text-align: center;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .footer-container {
@@ -767,31 +851,66 @@ footer {
   color: #bbb;
 }
 
-@media (max-width: 768px) {
+/* Estilo para o novo botão "AGENDE AGORA" DENTRO do menu overlay */
+.menu .agenda-mobile {
+    padding: 12px 25px;
+    margin-top: 25px; /* Espaço acima do botão */
+    background-color: #cba788; /* Cor principal */
+    color: white;
+    border: 2px solid white; /* Borda branca para destacar */
+    border-radius: 25px; /* Arredondado */
+    text-decoration: none;
+    font-family: 'Poppins', 'Lucida Sans', sans-serif; /* Fonte consistente */
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem; /* Tamanho da fonte */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.menu .agenda-mobile:hover {
+    background-color: #a87b60; /* Tom mais escuro */
+    border-color: #f0f0f0; /* Borda mais sutil no hover */
+    transform: scale(1.05); /* Efeito de hover */
+    color: white; /* Garante que a cor do texto não mude (se 'a' tiver outra cor) */
+}
+
+.menu .agenda-mobile i {
+    font-size: 1.1em;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
   .footer-container {
       flex-direction: column;
       text-align: center;
-      align-items: center;
-      justify-content: center;
+      align-items: center; /* Centraliza os itens no eixo principal */
+      justify-content: center; /* Centraliza no eixo cruzado */
   }
+
+  #main-header .agenda {
+        display: none;
+    }
 
   .footer-contact {
       display: flex;
       flex-direction: column;
-      align-items: center; 
+      align-items: center; /* Garante alinhamento central */
   }
 
   .footer-contact p {
       justify-content: center;
-      text-align: center;
-      width: 100%; 
+      text-align: center; /* Garante alinhamento do texto */
+      width: 100%; /* Ajusta para ocupar a largura disponível */
   }
 
   .footer-social {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      gap: 15px; 
+      justify-content: center; /* Alinha os ícones horizontalmente */
+      gap: 15px; /* Espaçamento entre os ícones */
   }
 
   .footer-links {
@@ -802,7 +921,7 @@ footer {
 
   .footer-links a {
       display: block;
-      margin: 5px 0;
+      margin: 5px 0; /* Espaçamento entre os links */
   }
 }
 

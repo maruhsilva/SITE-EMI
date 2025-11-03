@@ -17,14 +17,14 @@
           <a href="#inicio">Início</a>
           <a href="#sobre">Sobre</a>
           <a href="#servicos">Serviços</a>
-          <a href="contato.html">Contato</a>
+          <a href="contato">Contato</a>
         </nav>
         <div class="hamburger">
           <div></div>
           <div></div>
           <div></div>
         </div>
-        <button class="agenda" onclick="window.location.href='agendamento.html'">
+        <button class="agenda" onclick="window.location.href='agendamento'">
             <i class="fa-regular fa-calendar-days"></i> AGENDE AGORA
         </button>
     </header>
@@ -33,10 +33,12 @@
 
     <div class="menu">
       <button class="close-btn">&times;</button>
-      <a href="index.html">Home</a>
-      <a href="index.html#sobre">Sobre</a>
-      <a href="index.html#servicos">Serviços</a>
-      <a href="contato.html">Contato</a>
+      <a href="index">Início</a>
+      <a href="index#sobre">Sobre</a>
+      <a href="index#servicos">Serviços</a>
+      <a href="contato">Contato</a> <a href="agendamento" class="agenda-mobile">
+          <i class="fa-regular fa-calendar-days"></i> AGENDE AGORA
+      </a>
     </div>
     
     <section id="inicio" class="hero">
@@ -52,8 +54,8 @@
           <p>Reabilitação personalizada com foco em bem-estar e alívio da dor.</p>
   
           <div class="hero-buttons">
-              <button onclick="window.location.href='agendamento.html'">Agende sua consulta</button>
-              <button class="secondary" onclick="window.location.href='orcamentos.html'">Orçamentos</button>
+              <button onclick="window.location.href='agendamento'">Agende sua consulta</button>
+              <button class="secondary" onclick="window.location.href='orcamentos'">Orçamentos</button>
           </div>
       </div>
   </section>
@@ -129,6 +131,44 @@
       </div>
   </div>
   
+  <section id="depoimentos" class="depoimentos">
+        <h2>O Que Dizem Nossos Pacientes</h2>
+        <div class="depoimentos-container">
+
+            <div class="depoimento-card">
+                <div class="depoimento-img">
+                    <i class="fa-solid fa-user-circle"></i> 
+                    </div>
+                <blockquote class="depoimento-texto">
+                    "Depois de meses sofrendo com dor lombar, finalmente encontrei alívio com o tratamento da Dra. Emili. Profissional excelente e muito atenciosa. Recomendo demais!"
+                </blockquote>
+                <p class="patient-name">- Maria S.</p>
+                <p class="patient-detail">(Dor Lombar Crônica)</p>
+            </div>
+
+            <div class="depoimento-card">
+                 <div class="depoimento-img">
+                     <i class="fa-solid fa-user-circle"></i> 
+                 </div>
+                <blockquote class="depoimento-texto">
+                    "Tive uma lesão no joelho jogando futebol e achei que não voltaria a jogar. A fisioterapia esportiva foi fundamental na minha recuperação rápida e segura. Obrigado!"
+                </blockquote>
+                <p class="patient-name">- João P.</p>
+                <p class="patient-detail">(Recuperação Pós-Lesão Esportiva)</p>
+            </div>
+
+            <div class="depoimento-card">
+                 <div class="depoimento-img">
+                     <i class="fa-solid fa-user-circle"></i> 
+                 </div>
+                <blockquote class="depoimento-texto">
+                    "O atendimento domiciliar fez toda a diferença na recuperação da cirurgia do meu quadril. Muita competência e cuidado no conforto de casa."
+                </blockquote>
+                <p class="patient-name">- Carlos A.</p>
+                </div>
+            
+            </div>
+    </section>
 
     <a href="https://wa.me/55012981794612" target="_blank" class="whatsapp-button" title="Fale conosco no WhatsApp">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
@@ -145,22 +185,15 @@
         <div class="footer-links">
             <h3>Navegação</h3>
             <ul>
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#servicos">Serviços</a></li>
-                <li><a href="agendamento.html">Agendamento</a></li>
-                <li><a href="orcamentos.html">Orçamentos</a></li>
-                <li><a href="contato.html">Contato</a></li>
-                <li><a href="questionario_rmdq.html">Questionário</a></li>
-                <li><a href="login.php" target="_blank">Área do ADM</a></li>
+                <li><a href="index">Início</a></li> 
+                <li><a href="index#sobre">Sobre</a></li>
+                <li><a href="index#servicos">Serviços</a></li>
+                <li><a href="agendamento">Agendamento</a></li>
+                <li><a href="orcamentos">Orçamentos</a></li>
+                <li><a href="contato">Contato</a></li> 
+                <li><a href="questionario_rmdq">Questionário</a></li>
+                <li><a href="login" target="_blank">Área do ADM</a></li>
             </ul>
-        </div>
-
-        <div class="footer-contact">
-            <h3>Contato</h3>
-            <p><i class="fa-solid fa-phone"></i> (12) 98179-4612</p>
-            <p><i class="fa-solid fa-envelope"></i> contato@fisioemili.com</p>
-            <p><i class="fa-solid fa-location-dot"></i>São José dos Campos - SP</p>
         </div>
 
         <div class="footer-social">
@@ -170,8 +203,29 @@
                 <a href="" target="_blank"><i class="fa-brands fa-facebook"></i></a>
                 <a href="https://wa.me/55012981794612" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
+            <div class="footer-contact"><br><br>
+            <h3>Contato</h3>
+            <p><i class="fa-solid fa-phone"></i> (12) 98179-4612</p>
+            <p><i class="fa-solid fa-envelope"></i> contato@fisioemili.com</p>
+            <p><i class="fa-solid fa-location-dot"></i>São José dos Campos - SP</p>
         </div>
-    </div>
+        </div>
+
+        <div class="footer-payment">
+            <h3>Pagamentos e Convênios</h3>
+            <p class="payment-methods-title">Formas de Pagamento:</p>
+            <div class="payment-icons">
+                <span><i class="fa-brands fa-pix"></i> Pix</span>
+                <span><i class="fa-regular fa-credit-card"></i> Cartão</span>
+                <span><i class="fa-solid fa-money-bill-wave"></i> Dinheiro</span>
+                </div>
+            <p class="partnerships-title">Convênios Parceiros:</p>
+            <div class="partnership-logos">
+                 <span><strong>Wellhub</strong> (Gympass)</span>
+                 <span><strong>Totalpass</strong></span>
+            </div>
+        </div>
+        </div>
 
     <div class="footer-bottom">
         <p>&copy; 2025 Fisio Emi - Todos os direitos reservados. Desenvolvido por <a href="https://mswebwork.com.br" target="_blank" rel="noopener noreferrer" style="color: aliceblue;">MS WebWork</a></p>

@@ -1,5 +1,15 @@
 /* Estilos para questionario_rmdq.html (Adicionar ao index.css ou criar questionario.css) */
 
+#main-header .logo img {
+    width: 200px !important; /* Ajuste conforme necessário */
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 2%;
+    transition: filter 0.4s ease-out; /* Transição para o filtro */
+    background-color: rgb(255, 255, 255);
+    border-radius: 50px;
+}
+
 .questionario-container {
     max-width: 700px;
     margin: 3rem auto; /* Aumenta margem superior/inferior */
@@ -515,6 +525,10 @@
          justify-content: space-between; /* Afasta logo e hamburger/botão */
          gap: 0; /* Remove gap central */
      }
+     #main-header .agenda {
+        display: none;
+    }
+
 }
 
 @media (max-width: 768px) {

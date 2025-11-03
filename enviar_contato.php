@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->send();
 
         // Mensagem de sucesso e redirecionamento
-        echo "<script>alert('Mensagem enviada com sucesso! Entraremos em contato em breve.'); window.location.href='index.html';</script>"; // Redireciona para Home
+        echo "<script>alert('Mensagem enviada com sucesso! Entraremos em contato em breve.'); window.location.href='index';</script>"; // Redireciona para Home
 
     } catch (Exception $e) {
         // Mensagem de erro
@@ -84,8 +84,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 } else {
     // Se não for POST, redireciona ou mostra erro
-    // echo "<script>alert('Método de envio inválido.'); window.location.href='contato.html';</script>";
-    header("Location: contato.html"); // Redireciona de volta para o formulário
+    // echo "<script>alert('Método de envio inválido.'); window.location.href='contato';</script>";
+    header("Location: contato"); // Redireciona de volta para o formulário
     exit();
 }
 ?>

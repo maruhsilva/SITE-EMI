@@ -25,8 +25,13 @@
 
 /* --- Logo --- */
 #main-header .logo img {
-    width: 180px; 
-    transition: filter 0.4s ease-out;
+    width: 200px; /* Ajuste conforme necessário */
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 2%;
+    transition: filter 0.4s ease-out; /* Transição para o filtro */
+    background-color: rgb(255, 255, 255);
+    border-radius: 50px;
 }
 
 /* Logo no estado inicial (transparente - :not(.scrolled):not(.header-solid)) */
@@ -145,6 +150,9 @@
          justify-content: space-between; /* Afasta logo e hamburger/botão */
          gap: 0; /* Remove gap central */
      }
+     #main-header .agenda {
+        display: none;
+    }
 }
 
 @media (max-width: 768px) {
@@ -160,4 +168,34 @@
      }
      /* Se o botão AGENDE AGORA também deve sumir e ir para o menu: */
      /* #main-header .agenda { display: none; } */ 
+}
+
+/* Estilo para o novo botão "AGENDE AGORA" DENTRO do menu overlay */
+.menu .agenda-mobile {
+    padding: 12px 25px;
+    margin-top: 25px; /* Espaço acima do botão */
+    background-color: #cba788; /* Cor principal */
+    color: white;
+    border: 2px solid white; /* Borda branca para destacar */
+    border-radius: 25px; /* Arredondado */
+    text-decoration: none;
+    font-family: 'Poppins', 'Lucida Sans', sans-serif; /* Fonte consistente */
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem; /* Tamanho da fonte */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.menu .agenda-mobile:hover {
+    background-color: #a87b60; /* Tom mais escuro */
+    border-color: #f0f0f0; /* Borda mais sutil no hover */
+    transform: scale(1.05); /* Efeito de hover */
+    color: white; /* Garante que a cor do texto não mude (se 'a' tiver outra cor) */
+}
+
+.menu .agenda-mobile i {
+    font-size: 1.1em;
 }

@@ -1,5 +1,15 @@
 /* Estilos para contato.html (Adicionar ao index.css ou criar contato.css) */
 
+#main-header .logo img {
+    width: 200px  !important; /* Ajuste conforme necessário */
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 2%;
+    transition: filter 0.4s ease-out; /* Transição para o filtro */
+    background-color: rgb(255, 255, 255);
+    border-radius: 50px;
+}
+
 .contato-container {
     max-width: 1100px;
     margin: 3rem auto;
@@ -306,6 +316,9 @@
          justify-content: space-between; /* Afasta logo e hamburger/botão */
          gap: 0; /* Remove gap central */
      }
+     #main-header .agenda {
+        display: none;
+    }
 }
 
 @media (max-width: 768px) {
@@ -321,4 +334,109 @@
      }
      /* Se o botão AGENDE AGORA também deve sumir e ir para o menu: */
      /* #main-header .agenda { display: none; } */ 
+}
+
+/* ============================================= */
+/* ESTILOS PARA SEÇÃO DE FAQ (contato.html)    */
+/* ============================================= */
+
+.faq-section {
+    margin-top: 50px; /* Espaço acima da seção FAQ */
+    padding-top: 30px;
+    border-top: 1px solid #eee; /* Linha separadora sutil */
+}
+
+.faq-title {
+    text-align: center;
+    color: #a87b60; /* Cor escura do site */
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+
+.faq-item details {
+    background-color: #fdfbf8; /* Fundo bege muito claro */
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 15px; /* Espaço entre perguntas */
+    transition: box-shadow 0.3s ease;
+}
+
+.faq-item details[open] { /* Estilo quando a pergunta está aberta */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.faq-item summary {
+    padding: 18px 20px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    list-style: none; /* Remove marcador padrão (seta) */
+    position: relative; /* Para adicionar nosso próprio marcador */
+    transition: background-color 0.2s ease;
+}
+
+.faq-item summary:hover {
+    background-color: #f5f1ed; /* Cor levemente mais escura no hover */
+}
+
+/* Adiciona um marcador '+' que vira '-' */
+.faq-item summary::after {
+    content: '+';
+    font-size: 1.4rem;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #cba788;
+    transition: transform 0.3s ease;
+}
+
+.faq-item details[open] summary::after {
+    content: '−'; /* Sinal de menos */
+    transform: translateY(-50%) rotate(180deg); /* Animação opcional */
+}
+
+/* Evitar foco padrão que pode ser feio */
+.faq-item summary:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(203, 167, 136, 0.3); /* Foco sutil */
+}
+
+.faq-item details p { /* Estilo da resposta */
+    padding: 0px 20px 20px 20px; /* Padding apenas abaixo e dos lados */
+    color: #555;
+    line-height: 1.7;
+    margin-top: -5px; /* Ajuste para colar mais no summary */
+    border-top: 1px dashed #eee; /* Linha pontilhada separando */
+    padding-top: 15px;
+}
+
+/* Estilo para o novo botão "AGENDE AGORA" DENTRO do menu overlay */
+.menu .agenda-mobile {
+    padding: 12px 25px;
+    margin-top: 25px; /* Espaço acima do botão */
+    background-color: #cba788; /* Cor principal */
+    color: white;
+    border: 2px solid white; /* Borda branca para destacar */
+    border-radius: 25px; /* Arredondado */
+    text-decoration: none;
+    font-family: 'Poppins', 'Lucida Sans', sans-serif; /* Fonte consistente */
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem; /* Tamanho da fonte */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.menu .agenda-mobile:hover {
+    background-color: #a87b60; /* Tom mais escuro */
+    border-color: #f0f0f0; /* Borda mais sutil no hover */
+    transform: scale(1.05); /* Efeito de hover */
+    color: white; /* Garante que a cor do texto não mude (se 'a' tiver outra cor) */
+}
+
+.menu .agenda-mobile i {
+    font-size: 1.1em;
 }
