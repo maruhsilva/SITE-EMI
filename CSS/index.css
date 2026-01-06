@@ -7,9 +7,14 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: Cronder;
+    src: url(/Fonts/CRONDERegular.ttf) format("truetype");
+}
+
 html {
   /* Deixa espaço no topo ao rolar para âncoras */
-  scroll-padding-top: 40px; /* AJUSTE A ALTURA DO SEU HEADER */
+  scroll-padding-top: 80px; /* AJUSTE A ALTURA DO SEU HEADER */
   scroll-behavior: smooth; 
 }
 
@@ -23,7 +28,7 @@ body {
 
 /* Adiciona padding no topo para páginas com header sólido */
 body:has(#main-header.header-solid) main { 
-    padding-top: 100px; /* AJUSTE A ALTURA DO SEU HEADER */
+    padding-top: 100px;
 }
 
 /* ============================================= */
@@ -119,11 +124,11 @@ body:has(#main-header.header-solid) main {
     display: flex; align-items: center; gap: 8px;
     font-weight: bold; cursor: pointer;
     background-color: rgba(255, 255, 255, 0.9); 
-    color: #a87b60; 
+    color: #505F7E; 
 }
 #main-header.scrolled .agenda,
 #main-header.header-solid .agenda {
-    background-color: #cba788; 
+    background-color: #505F7E; 
     color: #ffffff; 
 }
 #main-header .agenda i { transition: color 0.4s ease-out; }
@@ -395,7 +400,17 @@ footer {
 /* ============================================= */
 /* ESTILOS PÁGINA INDEX (Hero, Sobre, Serviços)*/
 /* ============================================= */
+
+.scroll-down {
+    margin-top: 10px;
+    font-size: 2rem;
+    color: #a87b60;
+    animation: bounce 1.5s infinite;
+    display: block;
+}
+
 .hero {
+  padding-top: 80px; /* Espaço para o header fixo */
   position: relative; width: 100%; height: 100vh;
   display: flex; align-items: center; justify-content: center;
   text-align: center; overflow: hidden; color: #fff;
@@ -409,21 +424,25 @@ footer {
   position: absolute; inset: 0;
   background: rgba(0, 0, 0, 0.6); 
   z-index: 1;
+    backdrop-filter: blur(1px); border-radius: 12px;
+
 }
 .hero-content {
   position: relative; z-index: 2; max-width: 700px;
-  padding: 20px; background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px); border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  padding: 20px; 
+  /* background: rgba(255, 255, 255, 0.15); */
+  /* backdrop-filter: blur(10px); border-radius: 12px; */
+  /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); */
   animation: fadeIn 1s ease-in-out;
 }
 .hero-content h1 {
-  font-family: "Stack Sans Headline", serif;
-  text-transform: uppercase;
+    padding-top: 2rem;
+  font-family: "Cronder", serif;
+  /* text-transform: uppercase; */
   font-size: 3rem; font-weight: 600;
   line-height: 1.3;
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
 }
 .hero-content p { font-size: 1.3rem; margin-bottom: 20px; }
 .hero-buttons { display: flex; gap: 15px; justify-content: center; }
@@ -552,6 +571,9 @@ footer {
 }
 .depoimentos h2 {
     font-size: 2.5rem; margin-bottom: 50px; 
+    font-family: "Fjalla One", sans-serif;
+  /* font-weight: 200; */
+     line-height: 1.2;
     color: #cba788; text-transform: uppercase; letter-spacing: 1.5px;
 }
 .depoimentos-container {
