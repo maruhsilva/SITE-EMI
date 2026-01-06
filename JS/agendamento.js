@@ -227,7 +227,7 @@ function salvarAgendamento() {
     if (btnConfirmar) btnConfirmar.disabled = true;
 
     // Use o caminho correto para o seu script PHP
-    fetch('salvar_agendamento.php', {
+    fetch('salvar_agendamento', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nome, whatsapp, horario, data: dataAgendamento })

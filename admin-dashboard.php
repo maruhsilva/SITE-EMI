@@ -45,6 +45,7 @@ function formatarNumeroWhatsapp($numero) {
         </div>
         <nav class="admin-nav">
             <a href="index.html" target="_blank"><i class="fa-solid fa-home"></i> Ver Site</a>
+            <a href="admin-blog"><i class="fa-brands fa-blogger-b"></i></i> Postar no Blog</a>
             <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
         </nav>
     </header>

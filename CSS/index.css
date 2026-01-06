@@ -9,7 +9,7 @@
 
 @font-face {
     font-family: Cronder;
-    src: url(/Fonts/CRONDERegular.ttf) format("truetype");
+    src: url(./Fonts/CRONDERegular.ttf) format("truetype");
 }
 
 html {
@@ -65,6 +65,7 @@ body:has(#main-header.header-solid) main {
     /* background-color: rgb(255, 255, 255) !important; */
     border-radius: 50px !important;
 }
+
 /* Logo no estado inicial (transparente)
 #main-header:not(.scrolled):not(.header-solid) .logo img {
      Se o logo precisar ser branco sobre o vídeo, descomente:
@@ -75,7 +76,7 @@ body:has(#main-header.header-solid) main {
 #main-header.scrolled .logo img,
 #main-header.header-solid .logo img {
     filter: none; 
-    width: 180px; /* Logo levemente menor ao rolar */
+    
 }
 
 /* --- Navegação --- */
@@ -86,7 +87,7 @@ body:has(#main-header.header-solid) main {
 #main-header nav a {
     text-decoration: none;
     font-family: 'Poppins', 'Lucida Sans', sans-serif; 
-    font-weight: 500; 
+    /* font-weight: 500;  */
     text-transform: uppercase;
     letter-spacing: 0.5px;
     position: relative; 
@@ -437,9 +438,11 @@ footer {
 }
 .hero-content h1 {
     padding-top: 2rem;
-  font-family: "Cronder", serif;
-  /* text-transform: uppercase; */
-  font-size: 3rem; font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-size: 4rem; 
+  font-weight: 100;
+  letter-spacing: 1px !important;
   line-height: 1.3;
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
   /* margin-bottom: 15px; */
@@ -458,40 +461,167 @@ footer {
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 
 /* Sobre Mim */
-.sobre {
-  padding: 100px 20px; background: linear-gradient(180deg, #ffffff, #f9f9f9);
-  text-align: center;
-}
-.sobre h2 {
-  font-size: 2.8rem; margin-bottom: 25px; color: #cba788;
-  text-transform: uppercase; letter-spacing: 1.5px;
-}
-.sobre-container {
-  display: flex; align-items: center; justify-content: center;
-  flex-wrap: wrap; max-width: 1100px; margin: auto;
-  gap: 40px; text-align: left;
-}
-.sobre-img { flex: 1; min-width: 300px; max-width: 450px; }
-.sobre-img img { width: 100%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); }
-.sobre-content { flex: 2; max-width: 600px; }
-.sobre-content p { font-size: 1.3rem; color: #444; line-height: 1.6; margin-bottom: 20px; }
-.sobre-info { display: flex; flex-direction: column; gap: 15px; }
-.info-item {
-  display: flex; align-items: center; gap: 10px;
-  background: #fff; padding: 15px; border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-.info-item i { font-size: 1.8rem; color: #cba788; }
-.info-item p { font-size: 1.1rem; color: #333; }
-.botao {
-  display: inline-block; margin-top: 20px; padding: 12px 25px;
-  font-size: 1.2rem; color: white; background: linear-gradient(135deg, #cba788, #a87b60);
-  border-radius: 8px; text-decoration: none;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-.botao:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); }
+/* --- ESTILOS PROFISSIONAIS PÁGINA SOBRE --- */
 
+.sobre-pro {
+    padding: 150px 20px 60px 20px;
+    background-color: #f9f9f9; /* Fundo levemente cinza para destacar */
+    font-family: 'Poppins', sans-serif;
+}
+
+.container-pro {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Cabeçalho da Seção */
+.intro-text {
+    text-align: center;
+    margin-bottom: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.destaque-topo {
+    color: #bfa37c; /* Cor dourada/bege elegante */
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.intro-text h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.resumo-pro {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Grid Layout */
+.grid-sobre {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 50px;
+    align-items: center;
+}
+
+/* Imagem Profissional */
+.col-img {
+    position: relative;
+}
+
+.img-frame img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.experiencia-badge {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    border-left: 5px solid #bfa37c;
+}
+
+.experiencia-badge .num {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #bfa37c;
+    line-height: 1;
+}
+
+.experiencia-badge .texto {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Cards de Qualificação */
+.cards-qualificacao {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.card-q {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    transition: transform 0.3s ease;
+}
+
+.card-q:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-color: #bfa37c;
+}
+
+.card-q i {
+    font-size: 2rem;
+    color: #bfa37c;
+    margin-bottom: 15px;
+}
+
+.card-q h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card-q p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Botão Profissional */
+.botao-pro {
+    display: inline-block;
+    padding: 15px 35px;
+    background-color: #bfa37c; /* Ajuste para a cor principal da sua marca */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.botao-pro:hover {
+    background-color: #a38965;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+    .grid-sobre {
+        grid-template-columns: 1fr;
+    }
+    
+    .experiencia-badge {
+        right: 10px;
+        bottom: 10px;
+    }
+
+    .intro-text h1 {
+        font-size: 2rem;
+    }
+}
 /* Serviços */
 .servicos {
   padding: 80px 20px; background: linear-gradient(180deg, #f5f5f5, #e8e8e8);
@@ -618,7 +748,7 @@ footer {
 /* ============================================= */
 
 .agendamento-main-content {
-    padding: 80px 20px; 
+    padding: 150px 20px; 
     /* background-color: #f9f6f4;  */
     min-height: 80vh; 
 }
@@ -822,7 +952,9 @@ main.agendamento-main-content h1 {
 /* ============================================= */
 /* ESTILOS PÁGINA QUESTIONÁRIO RMDQ            */
 /* ============================================= */
+
 .questionario-container {
+    padding-top: 120px !important; 
     max-width: 700px; margin: 3rem auto; padding: 30px;
     background-color: #ffffff; border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -1226,3 +1358,57 @@ body:has(#main-header.header-solid) #formulario-fisio {
 .orcamento-form-container .botao-enviar {
     width: 100%;
 }
+
+/* ============================================= */
+/* ESTILOS DO BLOG (ADMIN E PÚBLICO)           */
+/* ============================================= */
+
+/* Grid de Posts (Página Blog) */
+.blog-header {
+    background-color: #f9f9f9; padding: 150px 20px 60px; text-align: center;
+}
+.blog-header h1 { color: #505f75; font-size: 2.5rem; margin-bottom: 15px; }
+.blog-header p { color: #666; max-width: 600px; margin: 0 auto; }
+
+.blog-container {
+    max-width: 1200px; margin: 0 auto; padding: 60px 20px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.blog-card {
+    background: #fff; border-radius: 15px; overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s;
+    border: 1px solid #eee; display: flex; flex-direction: column;
+}
+.blog-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+
+.blog-img { width: 100%; height: 200px; object-fit: cover; }
+
+.blog-content { padding: 25px; flex: 1; display: flex; flex-direction: column; }
+.blog-date { font-size: 0.85rem; color: #cba788; font-weight: bold; margin-bottom: 10px; }
+.blog-title { font-size: 1.4rem; color: #333; margin-bottom: 15px; line-height: 1.3; }
+.blog-summary { font-size: 0.95rem; color: #666; margin-bottom: 20px; flex: 1; }
+.blog-btn {
+    text-decoration: none; color: #505f75; font-weight: bold;
+    border: 2px solid #505f75; padding: 10px 20px; border-radius: 25px;
+    text-align: center; transition: all 0.3s; align-self: flex-start;
+}
+.blog-btn:hover { background: #505f75; color: #fff; }
+
+/* Página de Leitura do Post (Single) */
+.post-single { max-width: 800px; margin: 150px auto 60px; padding: 20px; }
+.post-single img { width: 100%; max-height: 400px; object-fit: cover; border-radius: 15px; margin-bottom: 30px; }
+.post-meta { color: #cba788; margin-bottom: 10px; }
+.post-content { line-height: 1.8; font-size: 1.1rem; color: #444; }
+.post-content p { margin-bottom: 20px; }
+.btn-voltar { display: inline-block; margin-bottom: 20px; color: #505f75; text-decoration: none; }
+
+/* Estilos do Editor (Admin) */
+.editor-container { max-width: 800px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; }
+.form-control { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 20px; font-size: 1rem; }
+.form-control:focus { border-color: #cba788; outline: none; }
+textarea.form-control { min-height: 200px; font-family: inherit; }
+.btn-save { background: #28a745; color: white; padding: 12px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1rem; }
+.btn-save:hover { background: #218838; }
