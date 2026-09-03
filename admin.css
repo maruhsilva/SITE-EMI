@@ -460,3 +460,58 @@ a:hover {
          text-align: center;
      }
 }
+
+/* --- BALÃO DE CAPS LOCK (TOOLTIP) --- */
+
+.caps-tooltip {
+    /* Posição e Visibilidade */
+    position: absolute;
+    top: 100%;       /* Fica logo abaixo do input */
+    left: 0;
+    z-index: 100;
+    margin-top: 12px; /* Distância da setinha para o input */
+    
+    /* Estilo Visual */
+    background-color: #333; /* Fundo escuro profissional */
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    white-space: nowrap; /* Não quebra linha */
+    
+    /* Animação */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-in-out;
+    pointer-events: none; /* Não atrapalha o clique */
+}
+
+/* A Setinha (Triângulo) apontando para cima */
+.caps-tooltip::before {
+    content: "";
+    position: absolute;
+    bottom: 100%; /* Fica no topo do balão */
+    left: 20px;   /* Posição horizontal da seta */
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent #333 transparent; /* Cria o triângulo */
+}
+
+/* Classe ativada pelo Javascript */
+.caps-tooltip.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Ícone amarelo de alerta dentro do balão */
+.caps-tooltip i {
+    color: #ffcc00;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}

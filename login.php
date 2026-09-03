@@ -28,19 +28,39 @@ unset($_SESSION['login_error']); // Limpa a mensagem após exibir
             <div class="login-error"><?php echo htmlspecialchars($login_error); ?></div>
         <?php endif; ?>
 
-        <form action="auth" method="POST">
-            <div class="form-group">
-                <label for="username">Usuário:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="password">Senha:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            
-            <button type="submit" class="login-button">Entrar</button>
-        </form>
+      <form action="auth" method="POST">
+    <div class="form-group">
+        <label for="username">Usuário:</label>
+        <input type="text" id="username" name="username" required>
     </div>
-</body>
+    
+    <div class="form-group" style="position: relative;">
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <div id="caps-warning" class="caps-tooltip">
+            <i class="fa-solid fa-triangle-exclamation"></i> ⚠️ Caps Lock ativado
+        </div>
+    </div>
+    
+    <button type="submit" class="login-button">Entrar</button>
+</form>
+
+<script>
+    const passwordInput = document.getElementById('password');
+    const capsWarning = document.getElementById('caps-warning');
+
+    function checkCaps(event) {
+        if (event.getModifierState("CapsLock")) {
+            capsWarning.classList.add('show'); // Usa classe para animar
+        } else {
+            capsWarning.classList.remove('show');
+        }
+    }
+
+    passwordInput.addEventListener('keyup', checkCaps);
+    passwordInput.addEventListener('click', checkCaps);
+    passwordInput.addEventListener('focus', checkCaps); // Verifica ao entrar no campo
+    passwordInput.addEventListener('blur', () => capsWarning.classList.remove('show')); // Esconde ao sair
+</script>
 </html>

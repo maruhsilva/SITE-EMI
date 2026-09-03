@@ -1,3 +1,21 @@
+<?php
+// 1. Conexão e busca do último post
+$conn = new mysqli("localhost", "root", "", "agendamentos");
+$conn->set_charset("utf8mb4");
+
+// Verifica se a tabela existe antes de consultar para evitar erros
+$tabelaExiste = $conn->query("SHOW TABLES LIKE 'blog_posts'");
+$latestPost = null;
+
+if ($tabelaExiste && $tabelaExiste->num_rows > 0) {
+    // Pega apenas 1 post, o mais recente
+    $sql = "SELECT * FROM blog_posts ORDER BY data_criacao DESC LIMIT 1";
+    $result = $conn->query($sql);
+    if ($result) {
+        $latestPost = $result->fetch_assoc();
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -10,7 +28,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fjalla+One&family=Gloock&family=Protest+Strike&family=Stack+Sans+Headline:wght@200..700&family=Tajawal:wght@200;300;400;500;700;800;900&family=Unna:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-medicalicon/1.0.3/font-medicalicon.min.css">
+    
     <link rel="stylesheet" href="CSS/index.css">
     <script defer src="JS/script.js"></script>
     <script defer src="JS/service-modal.js"></script>
@@ -18,13 +36,14 @@
 </head>
 <body>
     <header id="main-header"> 
-        <div class="logo"><img src="Diana Psicóloga Logo (11).png" alt="logo"></div>
+        <div class="logo"><img src="Diana Psicóloga Logo (11).png" alt="logo" class="logo-inicial"><img src="Diana Psicóloga Logo (2).png" alt="Fisio Emi" class="logo-scrolada"></div>
         <nav>
           <a href="#inicio">Início</a>
           <a href="#servicos">Serviços</a>
           <a href="sobre">Sobre</a>
+          <a href="blog.php">Blog</a>
           <a href="contato">Contato</a>
-          <a href="blog">Blog</a>
+          <a href="http://localhost:5173/" target="_blank" style="color: #d4af37; font-weight: bold;">Cursos</a>
         </nav>
         <div class="hamburger">
           <div></div>
@@ -35,16 +54,18 @@
             <i class="fa-regular fa-calendar-days"></i> AGENDE AGORA
         </button>
     </header>
-
+    
     <div class="menu-overlay"></div>
 
     <div class="menu">
       <button class="close-btn">&times;</button>
-      <a href="index">Início</a>
-      <a href="index#servicos">Serviços</a>
+      <a href="index.php">Início</a>
+      <a href="#servicos">Serviços</a>
       <a href="sobre">Sobre</a>
-      <a href="blog">Blog</a>
-      <a href="contato">Contato</a> <a href="agendamento" class="agenda-mobile">
+      <a href="blog.php">Blog</a>
+      <a href="contato">Contato</a> 
+      <a href="http://localhost:5173/" target="_blank" style="color: #d4af37; font-weight: bold;">Cursos da Fisio Emi</a>
+      <a href="agendamento" class="agenda-mobile">
           <i class="fa-regular fa-calendar-days"></i> AGENDE AGORA
       </a>
     </div>
@@ -55,21 +76,21 @@
           Seu navegador não suporta vídeos em HTML5.
       </video>
   
-      <div class="hero-overlay"></div> <!-- Camada de fundo escurecido -->
+      <div class="hero-overlay"></div> 
   
       <div class="hero-content">
-          <h1>Dedicação e excelência no cuidado da Dor e do Movimento</h1>
-          <!-- <p>Fisioterapia clínica especializada</p> -->
-            <a href="#servicos" class="scroll-down"><i class="fa-solid fa-angles-down"></i></a>
-          <!-- <div class="hero-buttons">
-              <button onclick="window.location.href='agendamento'">Agende sua consulta</button>
-              <button class="secondary" onclick="window.location.href='orcamentos'">Orçamentos</button>
-          </div> -->
+        <h1>
+            Dedicação e excelência no 
+            <span class="destaque-italico"> cuidado da Dor</span> e do <span class="destaque-italico">Movimento</span>
+        </h1>
+        
+        <p class="hero-subtexto">
+            Fisioterapia clínica especializada.
+        </p>
       </div>
-  </section>
+      <a href="#servicos" class="scroll-down"><i class="fa-solid fa-angles-down"></i></a>
+    </section>
   
-
-
     <section id="servicos" class="servicos">
       <h2>Áreas de Atendimento</h2>
       <div class="servico-container">
@@ -146,11 +167,47 @@
                     "O atendimento domiciliar fez toda a diferença na recuperação da cirurgia do meu quadril. Muita competência e cuidado no conforto de casa."
                 </blockquote>
                 <p class="patient-name">- Carlos A.</p>
-                </div>
-            
             </div>
+            
+        </div>
     </section>
 
+    <?php if ($latestPost): ?>
+    <section id="blog-home" class="blog-home-section">
+        <div class="container-blog-home">
+            <div class="blog-home-header">
+                <span class="subtitulo">DICAS E SAÚDE</span>
+                <h2>Últimas do Blog</h2>
+            </div>
+
+            <div class="blog-highlight-card">
+                <div class="blog-highlight-img">
+                    <?php if ($latestPost['imagem']): ?>
+                        <img src="<?php echo htmlspecialchars($latestPost['imagem']); ?>" alt="Capa do Post">
+                    <?php else: ?>
+                        <div class="img-placeholder"><i class="fa-solid fa-image"></i></div>
+                    <?php endif; ?>
+                </div>
+                
+                <div class="blog-highlight-content">
+                    <span class="date-badge">
+                        <i class="fa-regular fa-calendar"></i> 
+                        <?php echo date('d/m/Y', strtotime($latestPost['data_criacao'])); ?>
+                    </span>
+                    
+                    <h3><?php echo htmlspecialchars($latestPost['titulo']); ?></h3>
+                    
+                    <p><?php echo substr(htmlspecialchars($latestPost['resumo']), 0, 150) . '...'; ?></p>
+                    
+                    <div class="blog-actions">
+                        <a href="ver_post.php?id=<?php echo $latestPost['id']; ?>" class="btn-read-more">Ler Artigo Completo</a>
+                        <a href="blog.php" class="link-all">Ver todos os posts <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
     <a href="https://wa.me/55012981794612" target="_blank" class="whatsapp-button" title="Fale conosco no WhatsApp">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
       <div class="whatsapp-tooltip"></div>
@@ -166,12 +223,13 @@
         <div class="footer-links">
             <h3>Navegação</h3>
             <ul>
-                <li><a href="index">Início</a></li> 
-                <li><a href="index#sobre">Sobre</a></li>
-                <li><a href="index#servicos">Serviços</a></li>
+                <li><a href="index.php">Início</a></li> 
+                <li><a href="index.php#sobre">Sobre</a></li>
+                <li><a href="index.php#servicos">Serviços</a></li>
                 <li><a href="agendamento">Agendamento</a></li>
                 <li><a href="orcamentos">Orçamentos</a></li>
                 <li><a href="contato">Contato</a></li> 
+                <li><a href="http://localhost:5173/" target="_blank">Fisio Emi Academy (Cursos)</a></li>
                 <li><a href="questionario_rmdq">Questionário</a></li>
                 <li><a href="login" target="_blank">Área do ADM</a></li>
             </ul>
@@ -199,21 +257,19 @@
                 <span><i class="fa-brands fa-pix"></i> Pix</span>
                 <span><i class="fa-regular fa-credit-card"></i> Cartão</span>
                 <span><i class="fa-solid fa-money-bill-wave"></i> Dinheiro</span>
-                </div>
+            </div>
             <p class="partnerships-title">Convênios Parceiros:</p>
             <div class="partnership-logos">
                  <span><strong>Wellhub</strong> (Gympass)</span>
                  <span><strong>Totalpass</strong></span>
             </div>
         </div>
-        </div>
+    </div>
 
     <div class="footer-bottom">
         <p>&copy; 2025 Fisio Emi - Todos os direitos reservados. Desenvolvido por <a href="https://mswebwork.com.br" target="_blank" rel="noopener noreferrer" style="color: aliceblue;">MS WebWork</a></p>
     </div>
 </footer>
-
-    
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -234,11 +290,8 @@
         }
       
         window.addEventListener("scroll", checkPosition);
-        checkPosition(); // Executa a verificação ao carregar
+        checkPosition(); 
       });
     </script>
-
-    <!-- <link rel="stylesheet" href="chat-ia.css">
-    <script defer src="chat-ia.js"></script> -->
 </body>
 </html>

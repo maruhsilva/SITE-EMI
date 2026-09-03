@@ -50,6 +50,7 @@ body:has(#main-header.header-solid) main {
     gap: 10%; 
 }
 
+
 /* Estilos do Header QUANDO ROLADO (.scrolled) OU SÓLIDO (.header-solid) */
 #main-header.scrolled,
 #main-header.header-solid {
@@ -150,6 +151,36 @@ body:has(#main-header.header-solid) main {
 #main-header .hamburger.active div:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 #main-header .hamburger.active div:nth-child(2) { opacity: 0; }
 #main-header .hamburger.active div:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* --- TROCA DE LOGO NA ROLAGEM --- */
+
+/* 1. Estado Inicial (Topo da página) */
+.logo-inicial {
+    display: block; /* Mostra a logo do topo */
+}
+
+.logo-scrolada {
+    display: none; /* Esconde a logo da rolagem */
+}
+
+/* 2. Quando a página rola (.scrolled) OU quando o header é sólido (.header-solid) */
+#main-header.scrolled .logo-inicial,
+#main-header.header-solid .logo-inicial {
+    display: none; /* Esconde a logo do topo */
+}
+
+#main-header.scrolled .logo-scrolada,
+#main-header.header-solid .logo-scrolada {
+    display: block; /* Mostra a logo da rolagem */
+}
+
+/* Garante que ambas respeitem o tamanho definido anteriormente */
+#main-header .logo img {
+    /* Mantém as propriedades que você já tinha configurado antes */
+    width: 200px; 
+    padding: 5px;
+    border-radius: 50px !important;
+}
 
 
 /* ============================================= */
@@ -402,20 +433,73 @@ footer {
 /* ESTILOS PÁGINA INDEX (Hero, Sobre, Serviços)*/
 /* ============================================= */
 
-.scroll-down {
-    margin-top: 10px;
-    font-size: 2rem;
-    color: #a87b60;
-    animation: bounce 1.5s infinite;
-    display: block;
-}
 
 .hero {
-  padding-top: 80px; /* Espaço para o header fixo */
-  position: relative; width: 100%; height: 100vh;
-  display: flex; align-items: center; justify-content: center;
-  text-align: center; overflow: hidden; color: #fff;
+  padding-top: 80px; 
+  position: relative; 
+  width: 100%; 
+  height: 100vh;
+  display: flex; 
+  align-items: center; 
+  
+  /* 1. Mover para a ESQUERDA (Flex Start) */
+  justify-content: flex-start; 
+  
+  /* Espaçamento da esquerda para não colar na borda */
+  padding-left: 10%; 
+  padding-right: 0; /* Remove o padding da direita antigo */
+  
+  text-align: left; /* Alinha o texto à esquerda */
+  overflow: hidden; 
+  color: #fff;
 }
+
+.hero-content {
+  position: relative; 
+  z-index: 2; 
+  max-width: 700px; /* Largura para o texto não esticar demais */
+  padding: 20px 0;  /* Remove padding lateral desnecessário */
+  animation: fadeIn 1s ease-in-out;
+  margin: 0; 
+}
+
+/* Título Principal */
+.hero-content h1 {
+  padding-top: 2rem;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-size: 2rem; 
+  font-weight: 50 !important;
+  letter-spacing: -0.5px !important;
+  line-height: 1.2;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+  margin-bottom: 15px;
+  
+}
+
+/* O "Charme" do meio (Mudança de fonte) */
+.destaque-italico {
+  font-family: "Bodoni Moda", serif; /* Fonte elegante serifada (você já tem no HTML) */
+  font-style: italic;
+  font-weight: 400;
+  font-size: 3rem; /* Um pouco maior para destaque */
+  margin: 5px 0;   /* Respiro vertical */
+  color: #e0dac8;  /* Um tom levemente dourado/creme, ou mantenha #fff */
+}
+
+/* Texto pequeno embaixo */
+.hero-subtexto {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9); /* Branco levemente transparente */
+  max-width: 500px;
+  line-height: 1.6;
+  margin-top: 20px;
+  border-left: 1px solid rgba(255,255,255,0.3); /* Detalhe: linha fina ao lado */
+  padding-left: 20px; /* Espaço da linha */
+}
+
 .hero-video {
   position: absolute; top: 50%; left: 50%;
   width: 100%; height: 100%; object-fit: cover;
@@ -425,27 +509,7 @@ footer {
   position: absolute; inset: 0;
   background: rgba(0, 0, 0, 0.6); 
   z-index: 1;
-    backdrop-filter: blur(1px); border-radius: 12px;
-
-}
-.hero-content {
-  position: relative; z-index: 2; max-width: 700px;
-  padding: 20px; 
-  /* background: rgba(255, 255, 255, 0.15); */
-  /* backdrop-filter: blur(10px); border-radius: 12px; */
-  /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); */
-  animation: fadeIn 1s ease-in-out;
-}
-.hero-content h1 {
-    padding-top: 2rem;
-  font-family: "Montserrat", sans-serif;
-  text-transform: uppercase;
-  font-size: 4rem; 
-  font-weight: 100;
-  letter-spacing: 1px !important;
-  line-height: 1.3;
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
-  /* margin-bottom: 15px; */
+  backdrop-filter: blur(1px); border-radius: 12px;
 }
 .hero-content p { font-size: 1.3rem; margin-bottom: 20px; }
 .hero-buttons { display: flex; gap: 15px; justify-content: center; }
@@ -459,6 +523,60 @@ footer {
 .hero-buttons .secondary { background: transparent; border: 2px solid white; }
 .hero-buttons button:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- BOTÃO SCROLL DOWN (Centralizado e Animado) --- */
+.scroll-down {
+    position: absolute;  /* Solta o elemento para flutuar na tela */
+    bottom: 30px;        /* Fixa a 30px do fundo */
+    left: 50%;           /* Empurra para o meio */
+    transform: translateX(-50%); /* Corrige a centralização exata */
+    
+    font-size: 2.5rem;   /* Aumentei um pouco para destaque */
+    color: #a87b60;      /* Sua cor dourada */
+    text-decoration: none;
+    z-index: 10;         /* Garante que fique acima do vídeo */
+    
+    /* A animação precisa incluir o translateX(-50%) para não perder o centro */
+    animation: bounceCentralizado 2s infinite; 
+}
+
+/* Animação de pulo (Bounce) corrigida para manter a centralização */
+@keyframes bounceCentralizado {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-15px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-7px);
+    }
+}
+
+@media (max-width: 768px) {
+  .hero {
+      justify-content: center; /* Volta ao centro no celular */
+      padding-left: 0;
+      text-align: center;
+  }
+  .hero-content {
+      max-width: 90%; 
+      margin: 0 auto;
+      text-align: center;
+  }
+  .hero-content h1 {
+      font-size: 2.2rem; /* Menor no celular */
+  }
+  .destaque-italico {
+      font-size: 2.5rem;
+  }
+  .hero-subtexto {
+      margin: 20px auto 0; /* Centraliza margem */
+      border-left: none; /* Remove a linha lateral no celular */
+      padding-left: 0;
+      font-size: 1rem;
+  }
+}
 
 /* Sobre Mim */
 /* --- ESTILOS PROFISSIONAIS PÁGINA SOBRE --- */
@@ -696,7 +814,7 @@ footer {
 
 /* Depoimentos */
 .depoimentos {
-    padding: 80px 20px; background-color: #f8f6f4; 
+    padding: 80px 20px; background-color: #68738C; 
     text-align: center;
 }
 .depoimentos h2 {
@@ -863,6 +981,7 @@ main.agendamento-main-content h1 {
 /* ESTILOS PÁGINA CONTATO                      */
 /* ============================================= */
 .contato-container {
+    padding-top: 120px !important;
     max-width: 1100px; margin: 3rem auto; padding: 40px;
     background-color: #ffffff; border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -1412,3 +1531,158 @@ body:has(#main-header.header-solid) #formulario-fisio {
 textarea.form-control { min-height: 200px; font-family: inherit; }
 .btn-save { background: #28a745; color: white; padding: 12px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1rem; }
 .btn-save:hover { background: #218838; }
+
+/* ============================================= */
+/* SEÇÃO BLOG NA HOME (INDEX)                    */
+/* ============================================= */
+
+.blog-home-section {
+    padding: 80px 20px;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+}
+
+.container-blog-home {
+    max-width: 1000px; /* Um pouco mais estreito para focar a atenção */
+    margin: 0 auto;
+}
+
+.blog-home-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.blog-home-header .subtitulo {
+    display: block;
+    color: #a87b60;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.blog-home-header h2 {
+    font-size: 2.5rem;
+    color: #505f75;
+    font-family: "Fjalla One", sans-serif;
+    text-transform: uppercase;
+}
+
+/* Card Destaque Horizontal */
+.blog-highlight-card {
+    display: flex;
+    background: #f9f9f9;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.blog-highlight-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Imagem (Esquerda) */
+.blog-highlight-img {
+    flex: 1;
+    min-height: 300px;
+    position: relative;
+}
+
+.blog-highlight-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.img-placeholder {
+    width: 100%; height: 100%;
+    background: #e0e0e0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; color: #fff;
+}
+
+/* Conteúdo (Direita) */
+.blog-highlight-content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.date-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.blog-highlight-content h3 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.3;
+    font-family: 'Poppins', sans-serif;
+}
+
+.blog-highlight-content p {
+    color: #666;
+    margin-bottom: 25px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Botões */
+.blog-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-read-more {
+    background-color: #cba788;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-read-more:hover {
+    background-color: #a87b60;
+}
+
+.link-all {
+    color: #505f75;
+    text-decoration: none;
+    font-weight: 600;
+    transition: margin 0.3s;
+}
+
+.link-all:hover {
+    text-decoration: underline;
+    margin-left: 5px; /* Efeitinho de seta andando */
+}
+
+/* Responsivo para Celular */
+@media (max-width: 768px) {
+    .blog-highlight-card {
+        flex-direction: column;
+    }
+    .blog-highlight-img {
+        min-height: 200px;
+        max-height: 250px;
+    }
+    .blog-highlight-content {
+        padding: 25px;
+    }
+    .blog-highlight-content h3 {
+        font-size: 1.5rem;
+    }
+}

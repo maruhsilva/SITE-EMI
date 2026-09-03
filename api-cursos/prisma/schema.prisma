@@ -1,0 +1,160 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  ADMIN
+}
+
+model agendamentos {
+  id       Int      @id @default(autoincrement())
+  nome     String   @db.VarChar(255)
+  whatsapp String   @db.VarChar(20)
+  horario  DateTime @db.Time(0)
+  data     DateTime @db.Date
+}
+
+model blog_posts {
+  id           Int       @id @default(autoincrement())
+  titulo       String    @db.VarChar(255)
+  resumo       String    @db.Text
+  conteudo     String    @db.LongText
+  imagem       String?   @db.VarChar(255)
+  data_criacao DateTime? @default(now()) @db.DateTime(0)
+}
+
+model dias_disponiveis {
+  id                   Int                    @id @default(autoincrement())
+  data                 DateTime               @unique(map: "data") @db.Date
+  horarios_disponiveis horarios_disponiveis[]
+}
+
+model horarios_disponiveis {
+  id               Int              @id @default(autoincrement())
+  dia_id           Int
+  horario          DateTime         @db.Time(0)
+  ocupado          Boolean?         @default(false)
+  dias_disponiveis dias_disponiveis @relation(fields: [dia_id], references: [id], onUpdate: Restrict, map: "horarios_disponiveis_ibfk_1")
+
+  @@index([dia_id], map: "dia_id")
+}
+
+model orcamentos {
+  id         Int      @id @default(autoincrement())
+  nome       String?  @db.VarChar(100)
+  idade      Int?
+  whatsapp   String?  @db.VarChar(20)
+  email      String?  @db.VarChar(100)
+  tipo       String?  @db.VarChar(50)
+  sessoes    Int?
+  data_envio DateTime @default(now()) @db.Timestamp(0)
+}
+
+model User {
+  id          String       @id @default(uuid())
+  name        String
+  email       String       @unique
+  password    String
+  role        Role         @default(STUDENT)
+  enrollments Enrollment[]
+  progress    Progress[]
+  notes       Note[]
+  examResults ExamResult[]
+}
+
+model Course {
+  id          String       @id @default(uuid())
+  title       String
+  description String       @db.Text
+  price       Decimal      @db.Decimal(10, 2)
+  thumbnail   String?
+  modules     Module[]
+  enrollments Enrollment[]
+  createdAt   DateTime     @default(now())
+}
+
+model Module {
+  id       String   @id @default(uuid())
+  title    String
+  order    Int
+  courseId String
+  course   Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lessons  Lesson[]
+}
+
+model Lesson {
+  id          String       @id @default(uuid())
+  title       String
+  description String?      @db.Text
+  videoUrl    String?
+  pdfUrl      String?
+  type        String       @default("VIDEO")
+  order       Int
+  moduleId    String
+  module      Module       @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  progress    Progress[]
+  notes       Note[]
+  questions   Question[]
+  examResults ExamResult[]
+}
+
+model Enrollment {
+  id        String   @id @default(uuid())
+  userId    String
+  courseId  String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, courseId])
+}
+
+model Progress {
+  id        String   @id @default(uuid())
+  userId    String
+  lessonId  String
+  completed Boolean  @default(false)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson    Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, lessonId])
+}
+
+model Note {
+  id        String   @id @default(uuid())
+  content   String   @db.Text
+  userId    String
+  lessonId  String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson    Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
+
+model Question {
+  id           String @id @default(uuid())
+  lessonId     String
+  text         String @db.Text
+  options      String @db.Text
+  correctIndex Int
+  lesson       Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
+
+model ExamResult {
+  id        String   @id @default(uuid())
+  userId    String
+  lessonId  String
+  score     Float
+  passed    Boolean
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson    Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+}

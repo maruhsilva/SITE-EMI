@@ -17,7 +17,7 @@ $result = $conn->query($sql);
 </head>
 <body>
     <header id="main-header"> 
-        <div class="logo"><img src="Diana Psicóloga Logo (11).png" alt="logo"></div>
+        <div class="logo"><img src="Diana Psicóloga Logo (11).png" alt="logo" class="logo-inicial"><img src="Diana Psicóloga Logo (2).png" alt="Fisio Emi" class="logo-scrolada"></div>
         <nav>
           <a href="index">Início</a>
           <a href="index#servicos">Serviços</a>
